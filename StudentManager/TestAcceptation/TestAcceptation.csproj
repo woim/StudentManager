@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestAcceptation</RootNamespace>
     <AssemblyName>TestAcceptation</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,9 +38,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41">
       <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +53,27 @@
     </Compile>
     <Compile Include="ListStudentSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ListClass.feature.cs">
+      <DependentUpon>ListClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="addStudent.feature.cs">
+      <DependentUpon>AddStudent.feature</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveClass.feature.cs">
+      <DependentUpon>RemoveClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveStudent.feature.cs">
+      <DependentUpon>RemoveStudent.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AddClass.feature.cs">
+      <DependentUpon>AddClass.feature</DependentUpon>
+    </Compile>
+    <Compile Include="GetEvaluation.feature.cs">
+      <DependentUpon>GetEvaluation.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SetEvaluation.feature.cs">
+      <DependentUpon>SetEvaluation.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -63,6 +82,34 @@
       <LastGenOutput>ListStudent.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="ListClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ListClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="RemoveClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoveClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AddClass.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddClass.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AddStudent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>addStudent.feature.cs</LastGenOutput>
+    </None>
+    <None Include="RemoveStudent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoveStudent.feature.cs</LastGenOutput>
+    </None>
+    <None Include="GetEvaluation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetEvaluation.feature.cs</LastGenOutput>
+    </None>
+    <None Include="SetEvaluation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SetEvaluation.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

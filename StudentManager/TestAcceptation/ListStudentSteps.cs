@@ -1,5 +1,6 @@
 ﻿using System;
 using TechTalk.SpecFlow;
+using NUnit.Framework;
 
 namespace TestAcceptation
 {
