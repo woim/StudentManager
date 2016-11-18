@@ -51,28 +51,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ListStudent.feature</DependentUpon>
     </Compile>
-    <Compile Include="ListStudentSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ListClass.feature.cs">
       <DependentUpon>ListClass.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="addStudent.feature.cs">
       <DependentUpon>AddStudent.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="RemoveClass.feature.cs">
       <DependentUpon>RemoveClass.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="RemoveStudent.feature.cs">
       <DependentUpon>RemoveStudent.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AddClass.feature.cs">
       <DependentUpon>AddClass.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="GetEvaluation.feature.cs">
       <DependentUpon>GetEvaluation.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SetEvaluation.feature.cs">
       <DependentUpon>SetEvaluation.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
   </ItemGroup>
   <ItemGroup>

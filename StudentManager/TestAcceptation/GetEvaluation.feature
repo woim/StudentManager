@@ -1,4 +1,4 @@
-﻿Feature: SetEvaluation
+﻿Feature: GetEvaluation
 	In order to keep the evaluation of students
 	As a school administrator
 	I want to be able to enter the evaluations of the student into the data base
