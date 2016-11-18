@@ -5,7 +5,7 @@
 	
 @mytag
 Scenario Outline: Add a class - green path
-	Given I have one <Class1> in the data base  
+	Given I have one "PHY001" in the data base  
 	When I enter the command "-f testDB -addClass <Class2>"
 	Then the modified database should be 
 
