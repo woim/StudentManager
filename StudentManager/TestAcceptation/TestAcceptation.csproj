@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddClassSteps.cs" />
     <Compile Include="ListStudent.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

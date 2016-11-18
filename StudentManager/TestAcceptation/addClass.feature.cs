@@ -67,24 +67,18 @@ namespace TestAcceptation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add a class - green path")]
         [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("PHY001", "MAT002", new string[0])]
-        public virtual void AddAClass_GreenPath(string class1, string class2, string[] exampleTags)
+        public virtual void AddAClass_GreenPath()
         {
-            string[] @__tags = new string[] {
-                    "mytag"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class - green path", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class - green path", new string[] {
+                        "mytag"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have one \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have one calss \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When(string.Format("I enter the command \"-f testDB -addClass {0}\"", class2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I add the class \"MAT002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("the modified database should be", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the modified database should have 2 classes \"PHY001\" \"MAT002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -97,13 +91,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddAClassWithABadNameFormat_RedPath(string @class, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class with a bad name format - red path", exampleTags);
-#line 17
+#line 13
 this.ScenarioSetup(scenarioInfo);
-#line 18
- testRunner.Given("I have one \"PHY002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
- testRunner.When(string.Format("I enter the command \"-f testDB -addClass {0}\"", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 14
+ testRunner.Given("I have one calss \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.When(string.Format("I add a class {0} with bad format name", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
  testRunner.Then("I should get on the screen \"Error class name format incorrect.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -114,13 +108,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddAClassThatAlreadyExist_RedPath()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class that already exist - red path", ((string[])(null)));
-#line 28
+#line 24
 this.ScenarioSetup(scenarioInfo);
-#line 29
+#line 25
  testRunner.Given("I have a \"PHY002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 30
- testRunner.When("I enter the command \"-f testDB -addClass PHY002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 31
+#line 26
+ testRunner.When("I add the class \"PHY002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 27
  testRunner.Then("I should get on the screen \"Error class already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
