@@ -4,56 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Fclp;
-
+using Mono.Options;
 
 
 namespace StudentManager
 {
-    public class ApplicationArguments
-    {
-        public int RecordId { get; set; }
-        public bool Silent { get; set; }
-        public string NewValue { get; set; }
-    }
-
 
     class Program
     {
+
+ 
+
         static void Main(string[] args)
         {
             Console.Write("Hello");
 
-            // create a generic parser for the ApplicationArguments type
-            var p = new FluentCommandLineParser<ApplicationArguments>();
+            // these variables will be set when the command line is parsed
+            var verbosity = 0;
+            var shouldShowHelp = false;
+            var names = new List<string>();
+            var repeat = 1;
 
-            // specify which property the value will be assigned too.
-            p.Setup(arg => arg.RecordId)
-             .As('r', "record") // define the short and long option name
-             .Required() // using the standard fluent Api to declare this Option as required.
-             .WithDescription("Execute operation in silent mode without feedback");
+            // thses are the available options, not that they set the variables
+            var options = new OptionSet {
+                { "n|name=", "the name of someone to greet.", n => names.Add (n) },
+                { "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r },
+                { "v", "increase debug message verbosity", v => {
+                    if (v != null)
+                        ++verbosity;
+                } },
+                { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
+            };
 
-            p.Setup(arg => arg.NewValue)
-             .As('v', "value")
-             .Required();
+            Console.WriteLine("Usage: OptionsSample.exe [OPTIONS]+ message");
+            Console.WriteLine("Greet a list of individuals with an optional message.");
+            Console.WriteLine("If no message is specified, a generic greeting is used.");
+            Console.WriteLine();
 
-            p.Setup(arg => arg.Silent)
-             .As('s', "silent")
-             .SetDefault(false); // use the standard fluent Api to define a default value if non is specified in the arguments
+            // output the options
+            Console.WriteLine("Options:");
+            options.WriteOptionDescriptions(Console.Out);
 
-            p.SetupHelp("?", "help")
-             .Callback(text => Console.WriteLine(text));
-
-            // triggers the SetupHelp Callback which writes the text to the console
-            p.HelpOption.ShowHelp(p.Options);
-
-            var result = p.Parse(args);            
-
-            //if (result.HasErrors == false)
-            //{
-            //    // use the instantiated ApplicationArguments object from the Object property on the parser.
-            //    application.Run(p.Object);
-            //}
+            List<string> extra;
+            try
+            {
+                // parse the command line
+                extra = options.Parse(args);
+            }
+            catch (OptionException e)
+            {
+                // output some error message
+                Console.Write("greet: ");
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Try `greet --help' for more information.");
+                return;
+            }
         }
     }
 }
