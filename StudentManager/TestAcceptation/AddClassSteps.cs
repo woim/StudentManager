@@ -12,12 +12,6 @@ namespace TestAcceptation
             ScenarioContext.Current.Pending();
         }
         
-        [Given(@"I have a ""(.*)"" in the data base")]
-        public void GivenIHaveAInTheDataBase(string p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
         [When(@"I add the class ""(.*)"" in the data base")]
         public void WhenIAddTheClassInTheDataBase(string p0)
         {
@@ -30,14 +24,14 @@ namespace TestAcceptation
             ScenarioContext.Current.Pending();
         }
         
-        [Then(@"the modified database should have (.*) classes ""(.*)"" ""(.*)""")]
-        public void ThenTheModifiedDatabaseShouldHaveClasses(int p0, string p1, string p2)
+        [Then(@"the modified database should have classes ""(.*)"" and ""(.*)""")]
+        public void ThenTheModifiedDatabaseShouldHaveClassesAnd(string p0, string p1)
         {
             ScenarioContext.Current.Pending();
         }
         
-        [Then(@"I should get on the screen ""(.*)""")]
-        public void ThenIShouldGetOnTheScreen(string p0)
+        [Then(@"I should get on the screen the error message ""(.*)""")]
+        public void ThenIShouldGetOnTheScreenTheErrorMessage(string p0)
         {
             ScenarioContext.Current.Pending();
         }
