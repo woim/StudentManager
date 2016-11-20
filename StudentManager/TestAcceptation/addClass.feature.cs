@@ -67,45 +67,57 @@ namespace TestAcceptation
         public virtual void FeatureBackground()
         {
 #line 6
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Class"});
+            table1.AddRow(new string[] {
+                        "PHY001"});
 #line 7
- testRunner.Given("I have one calss \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have the data base with", ((string)(null)), table1, "Given ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add a class - green path")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void AddAClass_GreenPath()
+        [NUnit.Framework.DescriptionAttribute("Add a class")]
+        [NUnit.Framework.CategoryAttribute("greenPath")]
+        public virtual void AddAClass()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class - green path", new string[] {
-                        "mytag"});
-#line 11
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class", new string[] {
+                        "greenPath"});
+#line 13
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 12
+#line 14
  testRunner.When("I add the class \"MAT002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
+#line 15
  testRunner.Then("the modified database should have classes \"PHY001\" and \"MAT002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add a class with a bad name format - red path")]
+        [NUnit.Framework.DescriptionAttribute("Add a class with a bad name format")]
+        [NUnit.Framework.CategoryAttribute("redPath")]
         [NUnit.Framework.TestCaseAttribute("MA", new string[0])]
         [NUnit.Framework.TestCaseAttribute("MAGH1", new string[0])]
         [NUnit.Framework.TestCaseAttribute("MAT002", new string[0])]
-        public virtual void AddAClassWithABadNameFormat_RedPath(string @class, string[] exampleTags)
+        public virtual void AddAClassWithABadNameFormat(string @class, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class with a bad name format - red path", exampleTags);
-#line 16
+            string[] @__tags = new string[] {
+                    "redPath"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class with a bad name format", @__tags);
+#line 19
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 17
- testRunner.When(string.Format("I add a class {0} with bad format name", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 18
+#line 20
+ testRunner.When(string.Format("I add the class \"{0}\" in the database", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
  testRunner.Then("I should get on the screen the error message \"Error class name format incorrect.\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -113,17 +125,19 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add a class that already exist - red path")]
-        public virtual void AddAClassThatAlreadyExist_RedPath()
+        [NUnit.Framework.DescriptionAttribute("Add a class that already exist")]
+        [NUnit.Framework.CategoryAttribute("redPath")]
+        public virtual void AddAClassThatAlreadyExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class that already exist - red path", ((string[])(null)));
-#line 27
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class that already exist", new string[] {
+                        "redPath"});
+#line 31
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 28
+#line 32
  testRunner.When("I add the class \"PHY002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 33
  testRunner.Then("I should get on the screen the error message \"Error class already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
