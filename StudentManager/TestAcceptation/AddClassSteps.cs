@@ -29,7 +29,7 @@ namespace TestAcceptation
             listClassExpected.Add(className2);
             listClassExpected.Sort();
 
-            List<string> listClassActual = Application.Current.GetListClass();
+            List<string> listClassActual = Application.Current.ListClass;
             listClassActual.Sort();
 
             Assert.That(listClassExpected.SequenceEqual(listClassActual));
@@ -38,7 +38,7 @@ namespace TestAcceptation
         [Then(@"I should get on the screen the error message ""(.*)""")]
         public void ThenIShouldGetOnTheScreenTheErrorMessage(string errorMessageExpected)
         {
-            Assert.That(errorMessageExpected.Equals(Application.Current.GetErrorMessage()));
+            Assert.That(errorMessageExpected.Equals(Application.Current.ErrorMessage));
         }
     }
 }
