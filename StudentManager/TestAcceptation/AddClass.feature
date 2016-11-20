@@ -17,14 +17,14 @@ Scenario: Add a class
 
 @redPath
 Scenario Outline: Add a class with a bad name format
-	When I add the class "<Class>" in the database
+	When I add the class "<Class>" in the data base
 	Then I should get on the screen the error message "Error class name format incorrect."
 
 	Examples: 
-	| Class  | 
-	| MA     |
-	| MAGH1  |
-	| MAT002 | 
+	| Class   | 
+	| MA      |
+	| MAGH1   |
+	| MAT0002 | 
 
 
 @redPath

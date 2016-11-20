@@ -28,9 +28,12 @@ namespace TestAcceptation
             m_processName = @"F:\Personnel\Uqam\MGL7460_Realisation\lab\StudentManager\StudentManager\StudentManager\bin\Release\StudentManager.exe";
             m_dataBaseName = @"c:\temp\testableDataBase.txt";
             m_cmdRoot = "-f " + m_dataBaseName;
+            m_listClass = new List<string>();
 
             // Creating process and set up
             m_process = new Process();
+            m_process.StartInfo.UseShellExecute = false;
+            m_process.StartInfo.RedirectStandardError = true;
             m_process.StartInfo.FileName = m_processName;
         }
 

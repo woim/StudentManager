@@ -101,7 +101,7 @@ this.FeatureBackground();
         [NUnit.Framework.CategoryAttribute("redPath")]
         [NUnit.Framework.TestCaseAttribute("MA", new string[0])]
         [NUnit.Framework.TestCaseAttribute("MAGH1", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("MAT002", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("MAT0002", new string[0])]
         public virtual void AddAClassWithABadNameFormat(string @class, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -116,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 20
- testRunner.When(string.Format("I add the class \"{0}\" in the database", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I add the class \"{0}\" in the data base", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
  testRunner.Then("I should get on the screen the error message \"Error class name format incorrect.\"" +
                     "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
