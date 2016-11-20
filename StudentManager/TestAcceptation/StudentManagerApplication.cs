@@ -11,7 +11,7 @@ namespace TestAcceptation
         private string m_processName;
         private string m_dataBaseName;
         private string m_cmdRoot;
-        private List<string> m_ListClass;
+        private List<string> m_listClass;
         private Process m_process;
 
         public string ErrorMessage { get; private set; }
@@ -19,7 +19,7 @@ namespace TestAcceptation
         {
             get
             {
-                return m_ListClass;
+                return m_listClass;
             }
         } 
 
@@ -59,7 +59,7 @@ namespace TestAcceptation
             string[] dataBaseEntry = File.ReadAllLines(m_dataBaseName);
             foreach (var entry in File.ReadAllLines(m_dataBaseName))
             {
-                m_ListClass.Add(GetClass(entry));
+                m_listClass.Add(GetClass(entry));
             }
         }
 
