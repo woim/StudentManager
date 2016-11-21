@@ -1,4 +1,7 @@
-﻿namespace ClassLibrary
+﻿using System;
+using System.Collections.Generic;
+
+namespace ClassLibrary
 {
     public class Class
     {
@@ -7,6 +10,13 @@
         public Class(string className)
         {
             this.className = className;
+        }
+
+        public List<Student> Students { get; set; }
+
+        public void AddStudent(Student student)
+        {
+            throw new NotImplementedException();
         }
     }
 }
