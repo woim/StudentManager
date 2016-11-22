@@ -11,6 +11,8 @@ namespace TestAcceptation
         private string m_processName;
         private string m_dataBaseName;
         private string m_cmdRoot;
+
+
         private List<string> m_listClass;
         private Process m_process;
 
@@ -37,6 +39,30 @@ namespace TestAcceptation
             m_process.StartInfo.RedirectStandardError = true;
             m_process.StartInfo.RedirectStandardOutput = true;
             m_process.StartInfo.FileName = m_processName;
+        }
+
+        public void CreateTestableDataBase(Table table)
+        {
+            // Create testable data base
+            List<string> data = new List<string>();
+            foreach (var row in table.Rows)
+            {
+                data.Add(CreateDataFromTableRow(row));
+            }
+            // Write the data in the testable data base
+            File.WriteAllLines(m_dataBaseName, data);
+        }
+
+        public void AddClass(string className)
+        {
+            string command = "--addClass=" + className;
+            Process(command);
+        }
+
+        public void RemoveClass(string className)
+        {
+            string command = "--removeClass=" + className;
+            Process(command);
         }
 
         private string CreateDataFromTableRow(TableRow row)
@@ -66,24 +92,6 @@ namespace TestAcceptation
             {
                 m_listClass.Add(GetClass(entry));
             }
-        }
-
-        public void CreateTestableDataBase(Table table)
-        {
-            // Create testable data base
-            List<string> data = new List<string>();
-            foreach (var row in table.Rows)
-            {
-                data.Add(CreateDataFromTableRow(row));
-            }
-            // Write the data in the testable data base
-            File.WriteAllLines(m_dataBaseName, data);            
-        }
-         
-        public void AddClass(string className)
-        {
-            string command = "--addClass=" + className;
-            Process(command);
         }
     }
 

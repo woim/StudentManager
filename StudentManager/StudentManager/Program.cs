@@ -81,8 +81,7 @@ namespace StudentManager
                     Console.Write(error.Message);
                 }
             }
-
-            
+                        
             if (!String.IsNullOrEmpty(classNameToRemove))
             {
                 try
