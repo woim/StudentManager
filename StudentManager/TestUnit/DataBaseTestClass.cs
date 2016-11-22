@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ClassLibrary;
 using System.IO;
+using FluentAssertions;
 
 namespace TestUnit
 {
@@ -41,15 +42,15 @@ namespace TestUnit
         [Test]
         public void ShouldInstanciateDataBase()
         {
-           Assert.That(m_dataBase.Courses, Is.EquivalentTo(m_classesExpected));
+            m_dataBase.Courses.ShouldBeEquivalentTo(m_classesExpected);
         }
 
         [Test]
-        public void ShouldAddAClass()
+        public void ShouldAddAClassToDataBase()
         {
             m_dataBase.AddClass("CHI001");
             m_classesExpected.Add(new Course("CHI001"));
-            Assert.That(m_dataBase.Courses, Is.EquivalentTo(m_classesExpected));
+            m_dataBase.Courses.ShouldBeEquivalentTo(m_classesExpected);
         }
         
         [TearDown]

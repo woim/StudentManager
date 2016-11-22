@@ -2,6 +2,8 @@
 using ClassLibrary;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using FluentAssertions;
 
 namespace TestUnit
 {
@@ -43,7 +45,7 @@ namespace TestUnit
 		{
             File.WriteAllText(m_testDataBaseName, m_data);
             List<Course> classesActual = m_accessor.Load(m_testDataBaseName);
-            Assert.That(classesActual, Is.EquivalentTo(m_classesExpected));
+            classesActual.ShouldBeEquivalentTo(m_classesExpected);
         }
 
         [Test]
