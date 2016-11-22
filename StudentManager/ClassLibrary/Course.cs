@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
@@ -10,6 +11,12 @@ namespace ClassLibrary
 
         public Course(string className)
         {
+            Regex r = new Regex("[A-Z]{3}[0-9]{3}");
+            bool respectPat = r.IsMatch(className);
+            if ( !respectPat || className.Length != 6 )
+            {
+                throw new System.ArgumentException("Error class name format incorrect.");
+            }
             m_className = className;
             m_listStudents = new List<Student>();
         }

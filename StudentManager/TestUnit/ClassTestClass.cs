@@ -27,5 +27,13 @@ namespace TestUnit
             // TODO: Add your test code here
             Assert.That(newClass.Students, Is.EquivalentTo(listStudentExpected));
         }
+
+        [TestCase("MA")]
+        [TestCase("MAT01")]
+        [TestCase("MAT0001")]
+        public void ShouldHaveACorrectFormat(string courseName)
+        {
+            Assert.That(() => new Course(courseName), Throws.Exception);
+        }
     }
 }
