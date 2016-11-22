@@ -9,7 +9,7 @@ namespace TestUnit
 	public class AccessorTestClass
 	{
         Accessor m_accessor;
-        List<Class> m_classesExpected;
+        List<Course> m_classesExpected;
         string m_testDataBaseName;
         string m_data;
 
@@ -17,7 +17,7 @@ namespace TestUnit
         public void Init()
         {
             m_accessor = new Accessor();
-            m_classesExpected = new List<Class>();
+            m_classesExpected = new List<Course>();
 
             m_data = "MAT008/Loiseau,Martin=12,13,14|Thibodeau,Jean=18,18,18";
             m_testDataBaseName = TestContext.CurrentContext.WorkDirectory.ToString() + @"\testableDataBase.txt";
@@ -31,7 +31,7 @@ namespace TestUnit
             student2.FirstName = "Jean";
             student2.Notes = new List<double> { 18.0, 18.0, 18.0 };
             
-            Class testableClass = new Class("MAT008");
+            Course testableClass = new Course("MAT008");
             testableClass.AddStudent(student1);
             testableClass.AddStudent(student2);
 
@@ -42,14 +42,14 @@ namespace TestUnit
 		public void ShouldLoadDataBase()
 		{
             File.WriteAllText(m_testDataBaseName, m_data);
-            List<Class> classesActual = m_accessor.Load(m_testDataBaseName);
+            List<Course> classesActual = m_accessor.Load(m_testDataBaseName);
             Assert.That(classesActual, Is.EquivalentTo(m_classesExpected));
         }
 
         [Test]
         public void ShouldSaveDataBase()
         {
-            m_accessor.Classes = m_classesExpected;
+            m_accessor.Courses = m_classesExpected;
             m_accessor.Save(m_testDataBaseName);
             string data = File.ReadAllText(m_testDataBaseName).Trim();
             Assert.That(data, Is.EqualTo(m_data));

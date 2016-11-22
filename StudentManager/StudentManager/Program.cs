@@ -23,7 +23,7 @@ namespace StudentManager
 
             // thses are the available options, not that they set the variables
             var options = new OptionSet {
-                { "d|dataBase", "the database.", d => dataBaseName = d },
+                { "d|dataBase", "the database.", v => dataBaseName = v },
                 { "addClass=", "add class to the database.", addClass => className = addClass },
                 //{ "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r },
                 //{ "v", "increase debug message verbosity", v => {
@@ -57,12 +57,18 @@ namespace StudentManager
             }
 
             // Create the data base and load it with arhive
+            dataBaseName = @"C:\temp\testableDataBase.txt";
+            className = "MAT002";
             DataBase dataBase = new DataBase(dataBaseName);
             
             if (!String.IsNullOrEmpty(className))
             {
                 dataBase.AddClass(className);
             }
+
+            // Wrtie the database
+            dataBase.Save();
+            Console.Write("G tout fait\n");
         }
     }
 }

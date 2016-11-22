@@ -25,9 +25,9 @@ namespace TestAcceptation
 
         public StudentManagerApplication()
         {
-            m_processName = @"F:\Personnel\Uqam\MGL7460_Realisation\lab\StudentManager\StudentManager\StudentManager\bin\Release\StudentManager.exe";
-            m_dataBaseName = @"c:\temp\testableDataBase.txt";
-            m_cmdRoot = "-f " + m_dataBaseName;
+            m_processName = @"F:\Personnel\Uqam\MGL7460_Realisation\lab\StudentManager\StudentManager\StudentManager\bin\Debug\StudentManager.exe";
+            m_dataBaseName = @"C:\temp\testableDataBase.txt";
+            m_cmdRoot = "-f " + m_dataBaseName + " ";
             m_listClass = new List<string>();
 
             // Creating process and set up
@@ -39,7 +39,7 @@ namespace TestAcceptation
 
         private string CreateDataFromTableRow(TableRow row)
         {
-            string data = row["Class"].ToString();
+            string data = row["Class"].ToString() + "/";
 
             return data;
         }
@@ -75,7 +75,7 @@ namespace TestAcceptation
                 data.Add(CreateDataFromTableRow(row));
             }
             // Write the data in the testable data base
-            System.IO.File.WriteAllLines(m_dataBaseName, data);            
+            File.WriteAllLines(m_dataBaseName, data);            
         }
          
         public void AddClass(string className)

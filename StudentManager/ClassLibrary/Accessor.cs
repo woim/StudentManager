@@ -8,9 +8,9 @@ namespace ClassLibrary
 {
     public class Accessor
     {
-        public List<Class> Classes { get; set; }
+        public List<Course> Courses { get; set; }
 
-        public List<Class> Load(string archiveName)
+        public List<Course> Load(string archiveName)
         {
             if (!File.Exists(archiveName))
             {
@@ -18,36 +18,38 @@ namespace ClassLibrary
                 throw new FileNotFoundException(message);
             }
 
-            List<Class> Classes = new List<Class>();
+            List<Course> Courses = new List<Course>();
             string[] lines = System.IO.File.ReadAllLines(archiveName);
             foreach (var line in lines)
             {
-                string className = line.Split('/')[0];
-                Class classLoaded = new Class(className);
+                string[] fields = line.Split('/');                
+                Course classLoaded = new Course(fields[0]);
 
-                string studentsInfo = line.Split('/')[1];
-                string[] students = studentsInfo.Split('|');
-                foreach(var studentEntry in students)
+                if(!String.IsNullOrEmpty(fields[1]))
                 {
-                    string[] sutdentInfo = studentEntry.Split('=');
-                    List<string> stringNotes = new List<string>( sutdentInfo[1].Split(',') );
+                    string[] students = fields[1].Split('|');
+                    foreach (var studentEntry in students)
+                    {
+                        string[] sutdentInfo = studentEntry.Split('=');
+                        List<string> stringNotes = new List<string>(sutdentInfo[1].Split(','));
 
-                    Student student = new Student();
-                    student.Name = sutdentInfo[0].Split(',')[0];
-                    student.FirstName = sutdentInfo[0].Split(',')[1];
-                    student.Notes = stringNotes.Select(x => double.Parse(x)).ToList();
+                        Student student = new Student();
+                        student.Name = sutdentInfo[0].Split(',')[0];
+                        student.FirstName = sutdentInfo[0].Split(',')[1];
+                        student.Notes = stringNotes.Select(x => double.Parse(x)).ToList();
 
-                    classLoaded.AddStudent(student);                    
+                        classLoaded.AddStudent(student);
+                    }                    
                 }
-                Classes.Add(classLoaded);              
+                Courses.Add(classLoaded);
             }
-            return Classes;
+            return Courses;
         }
 
         public void Save(string m_testDataBaseName)
         {
             List<string> entries = new List<string>();
-            foreach (var course in Classes)
+            foreach (var course in Courses)
             {
                 string entry = course.Name + "/";
                 foreach (var student in course.Students)

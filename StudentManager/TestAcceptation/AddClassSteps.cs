@@ -25,7 +25,7 @@ namespace TestAcceptation
         public void ThenTheModifiedDatabaseShouldHaveClassesAnd(string className1, string className2)
         {
             List<string> listClassExpected = new List<string>();
-            listClassExpected.Add(className1);
+            listClassExpected.Add(className1); 
             listClassExpected.Add(className2);
             listClassExpected.Sort();
 

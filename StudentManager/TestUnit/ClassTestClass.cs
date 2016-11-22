@@ -15,7 +15,7 @@ namespace TestUnit
         [Test]
         public void ShouldAddAStudent()
         {
-            Class newClass = new Class("MAT001");
+            Course newClass = new Course("MAT001");
             Student student = new Student();
             student.Name = "Robert";
             student.FirstName = "Jean";

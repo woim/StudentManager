@@ -8,17 +8,34 @@ namespace ClassLibrary
 {
     public class DataBase
     {
+        string m_archiveName;
         Accessor m_accessor;
-        List<Class> m_classes;
-
+        List<Course> m_courses;
+                
         public DataBase(string archiveName)
         {
-            m_classes = m_accessor.Load(archiveName);
+            m_archiveName = archiveName;
+            m_accessor = new Accessor();
+            m_courses = m_accessor.Load(m_archiveName);
+        }
+
+        public List<Course> Courses
+        {
+            get
+            {
+                return m_courses;
+            }
         }
 
         public void AddClass(string className)
         {
-            m_classes.Add(new Class(className));
+            m_courses.Add(new Course(className));
+        }
+
+        public void Save()
+        {
+            m_accessor.Courses = m_courses;
+            m_accessor.Save(m_archiveName);
         }
     }
 }
