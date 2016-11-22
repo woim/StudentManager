@@ -3,29 +3,32 @@
 	As a school administrator
 	I want to be able remove a class from data base
 	
-@mytag
-Scenario Outline: Remove a class - green path
-	Given I have 2 classes <Class1> and <Class2> in the data base  
-	When I enter the command "-f testDB -removeClass <Class2>"
-	Then the modified database should be 
+Background: 
+	Given I have the data base with
+	| Class  |
+	| PHY001 |
+	| CHI002 |
+	
+
+@greenPath
+Scenario: Remove a class  
+	When I remove the class "PHY001" in the data base
+	Then the modified database should have classes "CHI002"
+
+
+@redPath
+Scenario Outline: Remove a class with a bad name format
+	When I remove the class "<Class>" in the data base
+	Then I should get on the screen the error message "Error class name format incorrect."
 
 	Examples: 
-		| Class1 | Class2 | 
-		| PHY001 | MAT002 |
+	| Class   | 
+	| MA      |
+	| MAGH1   |
+	| MAT0002 | 
 
 
-Scenario Outline: Remove a class with a bad name format - red path
-	Given I have one "PHY002" in the data base
-	When I enter the command "-f testDB -removeClass <Class>"
-	Then I should get on the screen "Error class name format incorrect."
-
-	Examples: 
-		| Class  | 
-		| MA     |
-		| MAGH1  |
-		| MAT002 | 
-
-Scenario: Remove a class that does not exist - red path
-	Given I have a "PHY002" in the data base 
-	When I enter the command "-f testDB -addClass CHI001"
-	Then I should get on the screen "Error class do not exist."
+@redPath
+Scenario: Remove a class that do not exist
+	When I remove the class "BIO002" in the data base
+	Then I should get on the screen the error message "Error class do not exist."

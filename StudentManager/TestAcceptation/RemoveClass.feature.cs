@@ -64,64 +64,83 @@ namespace TestAcceptation
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 6
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Class"});
+            table1.AddRow(new string[] {
+                        "PHY001"});
+            table1.AddRow(new string[] {
+                        "CHI002"});
+#line 7
+ testRunner.Given("I have the data base with", ((string)(null)), table1, "Given ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Remove a class - green path")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("PHY001", "MAT002", new string[0])]
-        public virtual void RemoveAClass_GreenPath(string class1, string class2, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Remove a class")]
+        [NUnit.Framework.CategoryAttribute("greenPath")]
+        public virtual void RemoveAClass()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a class", new string[] {
+                        "greenPath"});
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 15
+ testRunner.When("I remove the class \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.Then("the modified database should have classes \"CHI002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Remove a class with a bad name format")]
+        [NUnit.Framework.CategoryAttribute("redPath")]
+        [NUnit.Framework.TestCaseAttribute("MA", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("MAGH1", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("MAT0002", new string[0])]
+        public virtual void RemoveAClassWithABadNameFormat(string @class, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag"};
+                    "redPath"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a class - green path", @__tags);
-#line 7
-this.ScenarioSetup(scenarioInfo);
-#line 8
- testRunner.Given(string.Format("I have 2 classes {0} and {1} in the data base", class1, class2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
- testRunner.When(string.Format("I enter the command \"-f testDB -removeClass {0}\"", class2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("the modified database should be", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Remove a class with a bad name format - red path")]
-        [NUnit.Framework.TestCaseAttribute("MA", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("MAGH1", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("MAT002", new string[0])]
-        public virtual void RemoveAClassWithABadNameFormat_RedPath(string @class, string[] exampleTags)
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a class with a bad name format - red path", exampleTags);
-#line 17
-this.ScenarioSetup(scenarioInfo);
-#line 18
- testRunner.Given("I have one \"PHY002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
- testRunner.When(string.Format("I enter the command \"-f testDB -removeClass {0}\"", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a class with a bad name format", @__tags);
 #line 20
- testRunner.Then("I should get on the screen \"Error class name format incorrect.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 21
+ testRunner.When(string.Format("I remove the class \"{0}\" in the data base", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.Then("I should get on the screen the error message \"Error class name format incorrect.\"" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Remove a class that does not exist - red path")]
-        public virtual void RemoveAClassThatDoesNotExist_RedPath()
+        [NUnit.Framework.DescriptionAttribute("Remove a class that do not exist")]
+        [NUnit.Framework.CategoryAttribute("redPath")]
+        public virtual void RemoveAClassThatDoNotExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a class that does not exist - red path", ((string[])(null)));
-#line 28
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a class that do not exist", new string[] {
+                        "redPath"});
+#line 32
 this.ScenarioSetup(scenarioInfo);
-#line 29
- testRunner.Given("I have a \"PHY002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 30
- testRunner.When("I enter the command \"-f testDB -addClass CHI001\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 31
- testRunner.Then("I should get on the screen \"Error class do not exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+this.FeatureBackground();
+#line 33
+ testRunner.When("I remove the class \"BIO002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 34
+ testRunner.Then("I should get on the screen the error message \"Error class do not exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

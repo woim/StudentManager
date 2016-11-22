@@ -84,6 +84,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="RemoveClassSteps.cs" />
     <Compile Include="RemoveStudent.feature.cs">
       <DependentUpon>RemoveStudent.feature</DependentUpon>
       <AutoGen>True</AutoGen>
