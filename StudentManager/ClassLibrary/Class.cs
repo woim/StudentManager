@@ -5,12 +5,12 @@ namespace ClassLibrary
 {
     public class Class
     {
-        private string className;
+        private string m_className;
         private List<Student> m_listStudents;
 
         public Class(string className)
         {
-            this.className = className;
+            m_className = className;
             m_listStudents = new List<Student>();
         }
 
@@ -19,6 +19,13 @@ namespace ClassLibrary
             get
             {
                 return m_listStudents;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return m_className;
             }
         }
 

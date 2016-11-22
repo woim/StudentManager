@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
-//using System;
 using ClassLibrary;
 using System.Collections.Generic;
-//using System.Linq;
 using System.IO;
 
 namespace TestUnit
@@ -13,37 +11,48 @@ namespace TestUnit
         Accessor m_accessor;
         List<Class> m_classesExpected;
         string m_testDataBaseName;
+        string m_data;
 
         [SetUp]
-        public void createDatabase()
+        public void Init()
         {
             m_accessor = new Accessor();
+            m_classesExpected = new List<Class>();
 
-            string text = "MAT008/Loiseau,Martin=12.0,13.0,14.0|Thibodeau,Jean=18.0,18.0,18.0";
+            m_data = "MAT008/Loiseau,Martin=12,13,14|Thibodeau,Jean=18,18,18";
             m_testDataBaseName = TestContext.CurrentContext.WorkDirectory.ToString() + @"\testableDataBase.txt";
-            File.WriteAllText(m_testDataBaseName, text);
-
+ 
             Student student1 = new Student();
             student1.Name = "Loiseau";
             student1.FirstName = "Martin";
             student1.Notes = new List<double> { 12.0, 13.0, 14.0 };
-
             Student student2 = new Student();
             student2.Name = "Thibodeau";
             student2.FirstName = "Jean";
             student2.Notes = new List<double> { 18.0, 18.0, 18.0 };
             
             Class testableClass = new Class("MAT008");
-            testableClass.Students = new List<Student> { student1, student2 };
+            testableClass.AddStudent(student1);
+            testableClass.AddStudent(student2);
 
-            m_classesExpected = new List<Class> { testableClass };
+            m_classesExpected.Add(testableClass);
         }
 
 		[Test]
 		public void ShouldLoadDataBase()
 		{
+            File.WriteAllText(m_testDataBaseName, m_data);
             List<Class> classesActual = m_accessor.Load(m_testDataBaseName);
             Assert.That(classesActual, Is.EquivalentTo(m_classesExpected));
+        }
+
+        [Test]
+        public void ShouldSaveDataBase()
+        {
+            m_accessor.Classes = m_classesExpected;
+            m_accessor.Save(m_testDataBaseName);
+            string data = File.ReadAllText(m_testDataBaseName).Trim();
+            Assert.That(data, Is.EqualTo(m_data));
         }
         
         [TearDown]

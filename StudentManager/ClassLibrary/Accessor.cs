@@ -1,4 +1,5 @@
 ﻿//using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,8 @@ namespace ClassLibrary
 {
     public class Accessor
     {
+        public List<Class> Classes { get; set; }
+
         public List<Class> Load(string archiveName)
         {
             if (!File.Exists(archiveName))
@@ -15,7 +18,7 @@ namespace ClassLibrary
                 throw new FileNotFoundException(message);
             }
 
-            List<Class> listClass = new List<Class>();
+            List<Class> Classes = new List<Class>();
             string[] lines = System.IO.File.ReadAllLines(archiveName);
             foreach (var line in lines)
             {
@@ -36,9 +39,29 @@ namespace ClassLibrary
 
                     classLoaded.AddStudent(student);                    
                 }
-                listClass.Add(classLoaded);              
-            }            
-            return listClass;
+                Classes.Add(classLoaded);              
+            }
+            return Classes;
+        }
+
+        public void Save(string m_testDataBaseName)
+        {
+            List<string> entries = new List<string>();
+            foreach (var course in Classes)
+            {
+                string entry = course.Name + "/";
+                foreach (var student in course.Students)
+                {
+                    entry += student.Name + "," + student.FirstName + "=";
+                    entry += string.Join(",", student.Notes);
+                    if (student != course.Students.Last())
+                    {
+                        entry += "|";
+                    }
+                }
+                entries.Add(entry);
+            }
+            File.WriteAllLines(m_testDataBaseName, entries);
         }
     }
 }
