@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-using Mono.Options;
+//using Mono.Options;
 using ClassLibrary;
+using NDesk.Options;
 
 namespace StudentManager
 {
@@ -15,21 +16,14 @@ namespace StudentManager
         static void Main(string[] args)
         {
             // these variables will be set when the command line is parsed
-            //var verbosity = 0;
-            var shouldShowHelp = true;
+            bool shouldShowHelp = false;
             string dataBaseName = null;
             string className = null;
-            //var repeat = 1;
-
+  
             // thses are the available options, not that they set the variables
             var options = new OptionSet {
-                { "d|dataBase", "the database.", v => dataBaseName = v },
-                { "addClass=", "add class to the database.", addClass => className = addClass },
-                //{ "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r },
-                //{ "v", "increase debug message verbosity", v => {
-                //    if (v != null)
-                //        ++verbosity;
-                //} },
+                { "d|dataBase=", "the database.", v => dataBaseName = v },
+                { "addClass=", "add class to the database.", v => className = v },
                 { "h|help", "show help message and exit", h => shouldShowHelp = h != null },
             };
 
@@ -57,8 +51,6 @@ namespace StudentManager
             }
 
             // Create the data base and load it with arhive
-            dataBaseName = @"C:\temp\testableDataBase.txt";
-            className = "MAT002";
             DataBase dataBase = new DataBase(dataBaseName);
             
             if (!String.IsNullOrEmpty(className))

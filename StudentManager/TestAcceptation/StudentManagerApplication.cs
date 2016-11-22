@@ -27,7 +27,7 @@ namespace TestAcceptation
         {
             m_processName = @"F:\Personnel\Uqam\MGL7460_Realisation\lab\StudentManager\StudentManager\StudentManager\bin\Debug\StudentManager.exe";
             m_dataBaseName = @"C:\temp\testableDataBase.txt";
-            m_cmdRoot = "-f " + m_dataBaseName + " ";
+            m_cmdRoot = "-d=" + m_dataBaseName + " ";
             m_listClass = new List<string>();
 
             // Creating process and set up
@@ -54,7 +54,7 @@ namespace TestAcceptation
 
         private string GetClass(string entry)
         {
-            return entry.Split('\\')[0];            
+            return entry.Split('/')[0];            
         }
 
         private void ReadTestableDataBase()
@@ -80,7 +80,7 @@ namespace TestAcceptation
          
         public void AddClass(string className)
         {
-            string command = "--addCalss=" + className;
+            string command = "--addClass=" + className;
             Process(command);
         }
     }
