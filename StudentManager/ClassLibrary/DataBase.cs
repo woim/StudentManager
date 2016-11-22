@@ -29,6 +29,13 @@ namespace ClassLibrary
 
         public void AddClass(string className)
         {
+            foreach (var course in m_courses)
+            {
+                if (course.Name == className)
+                {
+                    throw new ArgumentException("Error class already exist.");
+                }
+            }            
             m_courses.Add(new Course(className));
         }
 

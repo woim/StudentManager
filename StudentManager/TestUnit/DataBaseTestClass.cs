@@ -11,6 +11,7 @@ namespace TestUnit
     {
         DataBase m_dataBase;
         List<Course> m_classesExpected;
+        Course m_testableClass;
         string m_testDataBaseName;
         string m_data;
 
@@ -26,12 +27,12 @@ namespace TestUnit
             student2.FirstName = "Jean";
             student2.Notes = new List<double> { 18.0, 18.0, 18.0 };
 
-            Course testableClass = new Course("MAT008");
-            testableClass.AddStudent(student1);
-            testableClass.AddStudent(student2);
+            m_testableClass = new Course("MAT008");
+            m_testableClass.AddStudent(student1);
+            m_testableClass.AddStudent(student2);
                         
             m_classesExpected = new List<Course>();
-            m_classesExpected.Add(testableClass);
+            m_classesExpected.Add(m_testableClass);
 
             m_data = "MAT008/Loiseau,Martin=12,13,14|Thibodeau,Jean=18,18,18";
             m_testDataBaseName = TestContext.CurrentContext.WorkDirectory.ToString() + @"\testableDataBase.txt";
@@ -51,6 +52,13 @@ namespace TestUnit
             m_dataBase.AddClass("CHI001");
             m_classesExpected.Add(new Course("CHI001"));
             m_dataBase.Courses.ShouldBeEquivalentTo(m_classesExpected);
+        }
+
+        [Test]
+        public void ShouldThrowExceptionWhenAddClassThatAlreadyExist()
+        {
+            m_dataBase.AddClass("CHI001");
+            Assert.That(() => m_dataBase.AddClass("CHI001"), Throws.Exception);
         }
         
         [TearDown]
