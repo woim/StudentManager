@@ -29,5 +29,5 @@ Scenario Outline: Add a class with a bad name format
 
 @redPath
 Scenario: Add a class that already exist
-	When I add the class "PHY002" in the data base
+	When I add the class "PHY001" in the data base
 	Then I should get on the screen the error message "Error class already exist."

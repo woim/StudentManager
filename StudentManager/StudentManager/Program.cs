@@ -13,6 +13,15 @@ namespace StudentManager
 {
     class Program
     {
+        static void ShowHelp(OptionSet options)
+        {
+            Console.WriteLine("Usage: StudentManager.exe [OPTIONS]");
+            Console.WriteLine("Manage a school data base.");
+            Console.WriteLine();
+            Console.WriteLine("Options:");
+            options.WriteOptionDescriptions(Console.Out);
+        }
+
         static void Main(string[] args)
         {
             // these variables will be set when the command line is parsed
@@ -24,17 +33,9 @@ namespace StudentManager
             var options = new OptionSet {
                 { "d|dataBase=", "the database.", v => dataBaseName = v },
                 { "addClass=", "add class to the database.", v => className = v },
-                { "h|help", "show help message and exit", h => shouldShowHelp = h != null },
+                { "h|help", "show help message and exit", v => shouldShowHelp = v != null },
             };
-
-            Console.WriteLine("Usage: StudentManager.exe [OPTIONS]");
-            Console.WriteLine("Manage a school data base.");
-            Console.WriteLine();
-
-            // output the options
-            Console.WriteLine("Options:");
-            options.WriteOptionDescriptions(Console.Out);
-
+            
             List<string> extra;
             try
             {
@@ -49,18 +50,38 @@ namespace StudentManager
                 Console.WriteLine("Try `StudentManager.exe --help' for more information.");
                 return;
             }
+            
+            // Print help message
+            if (shouldShowHelp || args.Length == 0)
+            {
+                ShowHelp(options);
+                return;
+            }
 
             // Create the data base and load it with arhive
+            if ( String.IsNullOrEmpty(dataBaseName) )
+            {
+                Console.WriteLine("No file for database specified.");
+                return;
+            }
+
+            // Load the data base
             DataBase dataBase = new DataBase(dataBaseName);
-            
+
             if (!String.IsNullOrEmpty(className))
             {
-                dataBase.AddClass(className);
+                try
+                {
+                    dataBase.AddClass(className);
+                }
+                catch (Exception error)
+                {
+                    Console.Write(error.Message);
+                }
             }
 
             // Wrtie the database
             dataBase.Save();
-            Console.Write("G tout fait\n");
         }
     }
 }

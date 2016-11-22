@@ -32,13 +32,14 @@ namespace TestAcceptation
             List<string> listClassActual = Application.Current.ListClass;
             listClassActual.Sort();
 
-            Assert.That(listClassExpected.SequenceEqual(listClassActual));
+            Assert.That(listClassExpected, Is.EquivalentTo(listClassActual));
         }
         
         [Then(@"I should get on the screen the error message ""(.*)""")]
         public void ThenIShouldGetOnTheScreenTheErrorMessage(string errorMessageExpected)
         {
-            Assert.That(errorMessageExpected.Equals(Application.Current.ErrorMessage));
+            string errorMessageActual = Application.Current.OutputMessage;
+            Assert.That(errorMessageActual, Is.EqualTo(errorMessageExpected));
         }
     }
 }

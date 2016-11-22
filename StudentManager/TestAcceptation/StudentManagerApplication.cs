@@ -15,6 +15,7 @@ namespace TestAcceptation
         private Process m_process;
 
         public string ErrorMessage { get; private set; }
+        public string OutputMessage { get; private set; }
         public List<string> ListClass
         {
             get
@@ -34,6 +35,7 @@ namespace TestAcceptation
             m_process = new Process();
             m_process.StartInfo.UseShellExecute = false;
             m_process.StartInfo.RedirectStandardError = true;
+            m_process.StartInfo.RedirectStandardOutput = true;
             m_process.StartInfo.FileName = m_processName;
         }
 
@@ -49,6 +51,7 @@ namespace TestAcceptation
             m_process.StartInfo.Arguments = m_cmdRoot + command;
             m_process.Start();
             ErrorMessage = m_process.StandardError.ReadToEnd();
+            OutputMessage = m_process.StandardOutput.ReadToEnd();
             ReadTestableDataBase();
         }
 
@@ -59,7 +62,6 @@ namespace TestAcceptation
 
         private void ReadTestableDataBase()
         {
-            string[] dataBaseEntry = File.ReadAllLines(m_dataBaseName);
             foreach (var entry in File.ReadAllLines(m_dataBaseName))
             {
                 m_listClass.Add(GetClass(entry));
