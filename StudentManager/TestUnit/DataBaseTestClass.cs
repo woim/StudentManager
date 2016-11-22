@@ -60,6 +60,14 @@ namespace TestUnit
             m_dataBase.AddClass("CHI001");
             Assert.That(() => m_dataBase.AddClass("CHI001"), Throws.Exception);
         }
+
+        [Test]
+        public void ShouldRemoveAClass()
+        {
+            m_dataBase.RemoveClass("MAT008");
+            m_classesExpected = new List<Course>();
+            m_dataBase.Courses.ShouldBeEquivalentTo(m_classesExpected);
+        }
         
         [TearDown]
         public void DisposeDataBase()
