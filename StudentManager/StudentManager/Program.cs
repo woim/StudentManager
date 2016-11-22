@@ -27,12 +27,14 @@ namespace StudentManager
             // these variables will be set when the command line is parsed
             bool shouldShowHelp = false;
             string dataBaseName = null;
-            string className = null;
-  
+            string classNameToAdd = null;
+            string classNameToRemove = null;
+
             // thses are the available options, not that they set the variables
             var options = new OptionSet {
                 { "d|dataBase=", "the database.", v => dataBaseName = v },
-                { "addClass=", "add class to the database.", v => className = v },
+                { "addClass=", "add class to the database.", v => classNameToAdd = v },
+                { "removeClass=", "add class to the database.", v => classNameToRemove = v },
                 { "h|help", "show help message and exit", v => shouldShowHelp = v != null },
             };
             
@@ -68,11 +70,24 @@ namespace StudentManager
             // Load the data base
             DataBase dataBase = new DataBase(dataBaseName);
 
-            if (!String.IsNullOrEmpty(className))
+            if (!String.IsNullOrEmpty(classNameToAdd))
             {
                 try
                 {
-                    dataBase.AddClass(className);
+                    dataBase.AddClass(classNameToAdd);
+                }
+                catch (Exception error)
+                {
+                    Console.Write(error.Message);
+                }
+            }
+
+            
+            if (!String.IsNullOrEmpty(classNameToRemove))
+            {
+                try
+                {
+                    dataBase.AddClass(classNameToAdd);
                 }
                 catch (Exception error)
                 {
