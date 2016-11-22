@@ -23,7 +23,7 @@ namespace TestAcceptation
             List<string> listClassActual = Application.Current.ListClass;
             listClassActual.Sort();
 
-            Assert.That(listClassExpected, Is.EquivalentTo(listClassActual));
+            Assert.That(listClassActual, Is.EquivalentTo(listClassExpected));
         }
     }
 }
