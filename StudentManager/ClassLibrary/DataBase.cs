@@ -44,5 +44,10 @@ namespace ClassLibrary
             m_accessor.Courses = m_courses;
             m_accessor.Save(m_archiveName);
         }
+
+        public void RemoveClass(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
