@@ -26,9 +26,9 @@ namespace TestAcceptation
 
             Assert.That(listClassExpected, Is.EquivalentTo(listClassActual));
         }
-        
-        [Then(@"I should get on the screen the error message ""(.*)""")]
-        public void ThenIShouldGetOnTheScreenTheErrorMessage(string errorMessageExpected)
+
+        [Then(@"I should get an error message ""(.*)""")]
+        public void ThenIShouldGetAnErrorMessage(string errorMessageExpected)
         {
             string errorMessageActual = Application.Current.OutputMessage;
             Assert.That(errorMessageActual, Is.EqualTo(errorMessageExpected));
