@@ -18,7 +18,7 @@ Scenario: Add a class
 @redPath
 Scenario Outline: Add a class with a bad name format
 	When I add the class "<Class>" in the data base
-	Then I should get on the screen the error message "Error class name format incorrect."
+	Then I should get an error message "Error class name format incorrect."
 
 	Examples: 
 	| Class   | 
@@ -30,4 +30,4 @@ Scenario Outline: Add a class with a bad name format
 @redPath
 Scenario: Add a class that already exist
 	When I add the class "PHY001" in the data base
-	Then I should get on the screen the error message "Error class already exist."
+	Then I should get an error message "Error class already exist."
