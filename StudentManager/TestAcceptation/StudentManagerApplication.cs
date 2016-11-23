@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using TechTalk.SpecFlow;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +13,6 @@ namespace TestAcceptation
         private List<string> m_listClass;
         private Process m_process;
 
-        //public string ErrorMessage { get; private set; }
         public string OutputMessage { get; private set; }
         public List<string> ListClass
         {
@@ -38,6 +36,19 @@ namespace TestAcceptation
             m_process.StartInfo.RedirectStandardOutput = true;
             m_process.StartInfo.FileName = m_processName;
         }
+        
+        public void AddClass(string className)
+        {
+            string command = "--addClass=" + className;
+            Process(command);
+        }
+
+        private string CreateDataFromTableRow(TableRow row)
+        {
+            string data = row["Class"].ToString() + "/";
+
+            return data;
+        }
 
         public void CreateTestableDataBase(Table table)
         {
@@ -51,37 +62,17 @@ namespace TestAcceptation
             File.WriteAllLines(m_dataBaseName, data);
         }
 
-        public void AddClass(string className)
+        private string GetClass(string entry)
         {
-            string command = "--addClass=" + className;
-            Process(command);
+            return entry.Split('/')[0];
         }
-
-        public void RemoveClass(string className)
-        {
-            string command = "--removeClass=" + className;
-            Process(command);
-        }
-
-        private string CreateDataFromTableRow(TableRow row)
-        {
-            string data = row["Class"].ToString() + "/";
-
-            return data;
-        }
-
+        
         private void Process(string command)
         {
             m_process.StartInfo.Arguments = m_cmdRoot + command;
             m_process.Start();
-            //ErrorMessage = m_process.StandardError.ReadToEnd();
             OutputMessage = m_process.StandardOutput.ReadToEnd();
             ReadTestableDataBase();
-        }
-
-        private string GetClass(string entry)
-        {
-            return entry.Split('/')[0];            
         }
 
         private void ReadTestableDataBase()
@@ -91,6 +82,12 @@ namespace TestAcceptation
                 m_listClass.Add(GetClass(entry));
             }
         }
+
+        public void RemoveClass(string className)
+        {
+            string command = "--removeClass=" + className;
+            Process(command);
+        } 
     }
 
     public static class Application
