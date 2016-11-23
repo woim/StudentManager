@@ -11,12 +11,10 @@ namespace TestAcceptation
         private string m_processName;
         private string m_dataBaseName;
         private string m_cmdRoot;
-
-
         private List<string> m_listClass;
         private Process m_process;
 
-        public string ErrorMessage { get; private set; }
+        //public string ErrorMessage { get; private set; }
         public string OutputMessage { get; private set; }
         public List<string> ListClass
         {
@@ -76,7 +74,7 @@ namespace TestAcceptation
         {
             m_process.StartInfo.Arguments = m_cmdRoot + command;
             m_process.Start();
-            ErrorMessage = m_process.StandardError.ReadToEnd();
+            //ErrorMessage = m_process.StandardError.ReadToEnd();
             OutputMessage = m_process.StandardOutput.ReadToEnd();
             ReadTestableDataBase();
         }

@@ -7,23 +7,17 @@ namespace TestAcceptation
     [Binding]
     public class AddClassSteps
     {
-        [Given(@"I have the data base with")]
-        public void GivenIHaveTheDataBaseWith(Table table)
-        {
-            Application.Current.CreateTestableDataBase(table);
-        }
-        
         [When(@"I add the class ""(.*)"" in the data base")]
         public void WhenIAddTheClassInTheDataBase(string className)
         {
             Application.Current.AddClass(className);
         }
-          
-        [Then(@"the modified database should have classes ""(.*)"" and ""(.*)""")]
-        public void ThenTheModifiedDatabaseShouldHaveClassesAnd(string className1, string className2)
+
+        [Then(@"the database should have Two classes ""(.*)"" and ""(.*)""")]
+        public void ThenTheDatabaseShouldHaveTwoClassesAnd(string className1, string className2)
         {
             List<string> listClassExpected = new List<string>();
-            listClassExpected.Add(className1); 
+            listClassExpected.Add(className1);
             listClassExpected.Add(className2);
             listClassExpected.Sort();
 

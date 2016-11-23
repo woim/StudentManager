@@ -91,7 +91,7 @@ this.FeatureBackground();
 #line 14
  testRunner.When("I add the class \"MAT002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("the modified database should have classes \"PHY001\" and \"MAT002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the database should have Two classes \"PHY001\" and \"MAT002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
