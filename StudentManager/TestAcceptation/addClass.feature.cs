@@ -118,8 +118,7 @@ this.FeatureBackground();
 #line 20
  testRunner.When(string.Format("I add the class \"{0}\" in the data base", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 21
- testRunner.Then("I should get on the screen the error message \"Error class name format incorrect.\"" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get an error message \"Error class name format incorrect.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -138,7 +137,7 @@ this.FeatureBackground();
 #line 32
  testRunner.When("I add the class \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 33
- testRunner.Then("I should get on the screen the error message \"Error class already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get an error message \"Error class already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
