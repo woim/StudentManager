@@ -120,8 +120,7 @@ this.FeatureBackground();
 #line 21
  testRunner.When(string.Format("I remove the class \"{0}\" in the data base", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 22
- testRunner.Then("I should get on the screen the error message \"Error class name format incorrect.\"" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get an error message \"Error class name format incorrect.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -140,7 +139,7 @@ this.FeatureBackground();
 #line 33
  testRunner.When("I remove the class \"BIO002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 34
- testRunner.Then("I should get on the screen the error message \"Error class do not exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get an error message \"Error class do not exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

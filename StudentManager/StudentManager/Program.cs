@@ -70,6 +70,7 @@ namespace StudentManager
             // Load the data base
             DataBase dataBase = new DataBase(dataBaseName);
 
+            // Add a class
             if (!String.IsNullOrEmpty(classNameToAdd))
             {
                 try
@@ -81,12 +82,13 @@ namespace StudentManager
                     Console.Write(error.Message);
                 }
             }
-                        
+            
+            // Remove a class            
             if (!String.IsNullOrEmpty(classNameToRemove))
             {
                 try
                 {
-                    dataBase.AddClass(classNameToAdd);
+                    dataBase.RemoveClass(classNameToRemove);
                 }
                 catch (Exception error)
                 {

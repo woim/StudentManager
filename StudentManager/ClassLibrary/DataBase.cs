@@ -11,13 +11,7 @@ namespace ClassLibrary
         string m_archiveName;
         Accessor m_accessor;
         List<Course> m_courses;
-                
-        public DataBase(string archiveName)
-        {
-            m_archiveName = archiveName;
-            m_accessor = new Accessor();
-            m_courses = m_accessor.Load(m_archiveName);
-        }
+
 
         public List<Course> Courses
         {
@@ -27,16 +21,31 @@ namespace ClassLibrary
             }
         }
 
+
+        public DataBase(string archiveName)
+        {
+            m_archiveName = archiveName;
+            m_accessor = new Accessor();
+            m_courses = m_accessor.Load(m_archiveName);
+        }
+        
         public void AddClass(string className)
         {
-            foreach (var course in m_courses)
+            if( m_courses.Exists( c => c.Name == className) )
             {
-                if (course.Name == className)
-                {
-                    throw new ArgumentException("Error class already exist.");
-                }
-            }            
+                throw new ArgumentException("Error class already exist.");
+            }       
             m_courses.Add(new Course(className));
+        }
+
+        public void RemoveClass(string className)
+        {
+            Course courseToRemove = new Course(className); // To test name format
+            if (!m_courses.Exists(c => c.Name == courseToRemove.Name))
+            {
+                throw new ArgumentException("Error class do not exist.");
+            }
+            m_courses.RemoveAll(c => c.Name == courseToRemove.Name);
         }
 
         public void Save()
@@ -45,9 +54,6 @@ namespace ClassLibrary
             m_accessor.Save(m_archiveName);
         }
 
-        public void RemoveClass(string v)
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

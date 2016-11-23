@@ -19,7 +19,7 @@ Scenario: Remove a class
 @redPath
 Scenario Outline: Remove a class with a bad name format
 	When I remove the class "<Class>" in the data base
-	Then I should get on the screen the error message "Error class name format incorrect."
+	Then I should get an error message "Error class name format incorrect."
 
 	Examples: 
 	| Class   | 
@@ -31,4 +31,4 @@ Scenario Outline: Remove a class with a bad name format
 @redPath
 Scenario: Remove a class that do not exist
 	When I remove the class "BIO002" in the data base
-	Then I should get on the screen the error message "Error class do not exist."
+	Then I should get an error message "Error class do not exist."
