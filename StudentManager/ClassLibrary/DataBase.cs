@@ -56,7 +56,7 @@ namespace ClassLibrary
 
         public Course SelectCourse(string className)
         {
-            throw new NotImplementedException();
+            return m_courses.Find( c => c.Name == className );
         }
     }
 }
