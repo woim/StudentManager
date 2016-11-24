@@ -1,34 +1,37 @@
 ﻿Feature: AddStudent
-	In order to fill a class with student
+	In order to fill a class with students
 	As a school administrator
 	I want to be able to add student to a class
-	
-@mytag
-Scenario Outline: Add a student to a class - green path
-	Given I have a <Class> with one student <Student1> 
-	When I enter the command "-f testDB -addStudent --Class=<Class> -n Loup -p Garou"
-	Then the modified database should be 
-
-	Examples: 
-		| Student1          | Class  |
-		| Thibodeau,Gustave | CHI001 |
 
 
-Scenario Outline: Add a student to a class in which it already exist - red path
-	Given I have a <Class> with one student <Student1> 
-	When I enter the command "-f testDB -addStudent --Class=<Class> -n Thibodeau -p Gustave"
-	Then I should get on the screen "Error student already exist."
-
-	Examples: 
-		| Student1          | Class  |
-		| Thibodeau,Gustave | CHI001 |
+Background: 
+	Given I have the data base with
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean | 
 
 
-Scenario Outline: Add a student without specifying the class - red path
-	Given I have a <Class> with one student <Student1> 
-	When I enter the command "-f testDB -addStudent -n Thibodeau -p Gustave"
-	Then I should get on the screen "Error class not specified."
+@greenPath
+Scenario: Add a student to a class
+	When I add a student to the class 
+		| Class  | Student        | 
+		| PHY001 | Loiseau,Martin | 		
+	Then the data base should have those element
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean | 
+		| PHY001 | Loiseau,Martin | 
 
-	Examples: 
-		| Student1          | Class  |
-		| Thibodeau,Gustave | CHI001 |
+
+@redPath
+Scenario: Add a student to a class in which it already exist
+	When I add a student to the class 
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean |
+	Then I should get an error message "Error student already exist."
+
+
+@redPath
+Scenario: Add a student without specifying the class
+	When I add a student to the class 
+		| Class  | Student        | 
+		|        | Thibodeau,Jean |
+	Then I should get an error message "Error class not specified."

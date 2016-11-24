@@ -5,8 +5,8 @@
 	
 Background: 
 	Given I have the data base with
-	| Class  |
-	| PHY001 |
+		| Class  |
+		| PHY001 |
 	
 
 @greenPath
@@ -21,10 +21,10 @@ Scenario Outline: Add a class with a bad name format
 	Then I should get an error message "Error class name format incorrect."
 
 	Examples: 
-	| Class   | 
-	| MA      |
-	| MAGH1   |
-	| MAT0002 | 
+		| Class   | 
+		| MA      |
+		| MAGH1   |
+		| MAT0002 | 
 
 
 @redPath

@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 namespace TestAcceptation
 {
@@ -10,17 +11,23 @@ namespace TestAcceptation
         private string m_processName;
         private string m_dataBaseName;
         private string m_cmdRoot;
+
+
         private List<string> m_listClass;
         private Process m_process;
 
+
         public string OutputMessage { get; private set; }
+
         public List<string> ListClass
         {
             get
             {
                 return m_listClass;
             }
-        } 
+        }
+
+
 
         public StudentManagerApplication()
         {
@@ -43,11 +50,13 @@ namespace TestAcceptation
             Process(command);
         }
 
-        private string CreateDataFromTableRow(TableRow row)
+        public void AddStudent(Table table)
         {
-            string data = row["Class"].ToString() + "/";
-
-            return data;
+            foreach (var row in table.Rows)
+            {
+                string command = "--class=" + row["Class"] + "--addStudent = " + row["Student"];
+                Process(command);
+            }
         }
 
         public void CreateTestableDataBase(Table table)
@@ -60,6 +69,20 @@ namespace TestAcceptation
             }
             // Write the data in the testable data base
             File.WriteAllLines(m_dataBaseName, data);
+        }
+
+        public List<Entry> GetDataBase()
+        {
+            List<Entry> dataBaseEntries = new List<Entry>();
+            return dataBaseEntries;
+        }
+
+
+        private string CreateDataFromTableRow(TableRow row)
+        {
+            string data = row["Class"].ToString() + "/";
+
+            return data;
         }
 
         private string GetClass(string entry)

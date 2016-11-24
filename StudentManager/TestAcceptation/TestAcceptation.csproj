@@ -63,6 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddClassSteps.cs" />
+    <Compile Include="AddStudent.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddStudent.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AddStudentSteps.cs" />
+    <Compile Include="Entry.cs" />
     <Compile Include="GenerateDataBaseStep.cs" />
     <Compile Include="ListStudent.feature.cs">
       <AutoGen>True</AutoGen>
@@ -72,11 +79,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ListClass.feature.cs">
       <DependentUpon>ListClass.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="addStudent.feature.cs">
-      <DependentUpon>AddStudent.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -109,6 +111,10 @@
     <Compile Include="StudentManagerApplication.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AddStudent.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddStudent.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="ListStudent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -126,10 +132,6 @@
     <None Include="AddClass.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddClass.feature.cs</LastGenOutput>
-    </None>
-    <None Include="AddStudent.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>addStudent.feature.cs</LastGenOutput>
     </None>
     <None Include="RemoveStudent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
