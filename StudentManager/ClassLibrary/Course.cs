@@ -40,5 +40,22 @@ namespace ClassLibrary
         {
             m_listStudents.Add(student);
         }
+
+        public void AddStudent(string studentName)
+        {
+            string[] names = studentName.Split(',');
+            if (names.Length != 2)
+            {
+                throw new ArgumentException("Student must have name and at least a first name");
+            }
+            Student student = new Student();
+            student.Name = names[0];
+            student.FirstName = names[1];
+            if (m_listStudents.Exists(s => s.Name == student.Name && s.FirstName == student.FirstName))
+            {
+                throw new ArgumentException("Error student already exist.");
+            }
+            AddStudent(student);
+        }
     }
 }

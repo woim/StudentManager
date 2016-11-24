@@ -98,16 +98,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="GetEvaluation.feature.cs">
-      <DependentUpon>GetEvaluation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="SetEvaluation.feature.cs">
-      <DependentUpon>SetEvaluation.feature</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="StudentManagerApplication.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,14 +126,6 @@
     <None Include="RemoveStudent.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RemoveStudent.feature.cs</LastGenOutput>
-    </None>
-    <None Include="GetEvaluation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetEvaluation.feature.cs</LastGenOutput>
-    </None>
-    <None Include="SetEvaluation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SetEvaluation.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

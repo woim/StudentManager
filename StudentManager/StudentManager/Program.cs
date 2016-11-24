@@ -29,12 +29,16 @@ namespace StudentManager
             string dataBaseName = null;
             string classNameToAdd = null;
             string classNameToRemove = null;
+            string className = null;
+            string studentName = null;
 
             // thses are the available options, not that they set the variables
             var options = new OptionSet {
                 { "d|dataBase=", "the database.", v => dataBaseName = v },
-                { "addClass=", "add class to the database.", v => classNameToAdd = v },
-                { "removeClass=", "add class to the database.", v => classNameToRemove = v },
+                { "addClass=", "add class to database.", v => classNameToAdd = v },
+                { "removeClass=", "remove class from database.", v => classNameToRemove = v },
+                { "class=", "specify class on which we want to add/remove a student", v => className = v },
+                { "addStudent=", "specify student name [foremat: Name,FirstName1,FirstName2,FirstNameN]", v => studentName = v },
                 { "h|help", "show help message and exit", v => shouldShowHelp = v != null },
             };
             
@@ -70,6 +74,7 @@ namespace StudentManager
             // Load the data base
             DataBase dataBase = new DataBase(dataBaseName);
 
+
             // Add a class
             if (!String.IsNullOrEmpty(classNameToAdd))
             {
@@ -96,8 +101,30 @@ namespace StudentManager
                 }
             }
 
+            // Add a student
+            if (!String.IsNullOrEmpty(studentName))
+            {
+                if (!String.IsNullOrEmpty(className))
+                {                    
+                    try
+                    {
+                        dataBase.SelectCourse(className).AddStudent(studentName);
+                    }
+                    catch (Exception error)
+                    {
+                        Console.Write(error.Message);
+                    }
+                }
+                else
+                {
+                    Console.Write("Error class not specified.");
+                }
+            }
+             
+
             // Wrtie the database
             dataBase.Save();
         }
     }
 }
+ 

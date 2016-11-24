@@ -31,13 +31,16 @@ namespace ClassLibrary
                     foreach (var studentEntry in students)
                     {
                         string[] sutdentInfo = studentEntry.Split('=');
-                        List<string> stringNotes = new List<string>(sutdentInfo[1].Split(','));
 
                         Student student = new Student();
                         student.Name = sutdentInfo[0].Split(',')[0];
                         student.FirstName = sutdentInfo[0].Split(',')[1];
-                        student.Notes = stringNotes.Select(x => double.Parse(x)).ToList();
 
+                        if (sutdentInfo.Length > 1)//  !String.IsNullOrEmpty(sutdentInfo[1]))
+                        {
+                            List<string> stringNotes = new List<string>(sutdentInfo[1].Split(','));
+                            student.Notes = stringNotes.Select(x => double.Parse(x)).ToList();
+                        } 
                         classLoaded.AddStudent(student);
                     }                    
                 }
@@ -54,8 +57,11 @@ namespace ClassLibrary
                 string entry = course.Name + "/";
                 foreach (var student in course.Students)
                 {
-                    entry += student.Name + "," + student.FirstName + "=";
-                    entry += string.Join(",", student.Notes);
+                    entry += student.Name + "," + student.FirstName;
+                    if (student.Notes != null )
+                    {
+                        entry += "=" + string.Join(",", student.Notes);
+                    }                    
                     if (student != course.Students.Last())
                     {
                         entry += "|";

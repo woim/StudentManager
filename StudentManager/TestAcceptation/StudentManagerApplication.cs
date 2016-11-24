@@ -54,7 +54,7 @@ namespace TestAcceptation
         {
             foreach (var row in table.Rows)
             {
-                string command = "--class=" + row["Class"] + "--addStudent = " + row["Student"];
+                string command = "--class=" + row["Class"] + " --addStudent=" + row["Student"];
                 Process(command);
             }
         }
@@ -74,15 +74,59 @@ namespace TestAcceptation
         public List<Entry> GetDataBase()
         {
             List<Entry> dataBaseEntries = new List<Entry>();
+            foreach (var entry in File.ReadAllLines(m_dataBaseName))
+            {
+                dataBaseEntries.AddRange(FormatLineToEntry(entry));
+            }
             return dataBaseEntries;
         }
+
+        public void RemoveClass(string className)
+        {
+            string command = "--removeClass=" + className;
+            Process(command);
+        }
+
 
 
         private string CreateDataFromTableRow(TableRow row)
         {
             string data = row["Class"].ToString() + "/";
-
+            if (row.Keys.Contains("Student"))
+            {
+                data += row["Student"].ToString();
+            }
             return data;
+        }
+
+        private List<Entry> FormatLineToEntry(string entryLine)
+        {
+            List<Entry> entries = new List<Entry>();
+            
+            string className = entryLine.Split('/')[0];
+            string classInfo = entryLine.Split('/')[1];
+
+            if (!String.IsNullOrEmpty(classInfo))
+            {
+                string[] listStudent = classInfo.Split('|');
+                foreach (var studentInfo in listStudent)
+                {
+                    string[] studentField = studentInfo.Split('=');
+                    string studentNames = studentField[0]; 
+
+                    Entry entry = new Entry();
+                    entry.Class = className;
+                    entry.Student = studentNames;
+                    entries.Add(entry);
+                }
+            }
+            else
+            {
+                Entry entry = new Entry();
+                entry.Class = className;
+                entries.Add(entry);
+            }
+            return entries;
         }
 
         private string GetClass(string entry)
@@ -104,13 +148,7 @@ namespace TestAcceptation
             {
                 m_listClass.Add(GetClass(entry));
             }
-        }
-
-        public void RemoveClass(string className)
-        {
-            string command = "--removeClass=" + className;
-            Process(command);
-        } 
+        }        
     }
 
     public static class Application
