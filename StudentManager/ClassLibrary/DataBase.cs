@@ -40,7 +40,7 @@ namespace ClassLibrary
 
         public void RemoveClass(string className)
         {
-            Course courseToRemove = new Course(className); // To test name format
+            Course courseToRemove = new Course(className); 
             if (!m_courses.Exists(c => c.Name == courseToRemove.Name))
             {
                 throw new ArgumentException("Error class do not exist.");
@@ -54,6 +54,9 @@ namespace ClassLibrary
             m_accessor.Save(m_archiveName);
         }
 
- 
+        public Course SelectCourse(string className)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

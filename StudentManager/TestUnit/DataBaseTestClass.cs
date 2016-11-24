@@ -68,6 +68,13 @@ namespace TestUnit
             m_classesExpected = new List<Course>();
             m_dataBase.Courses.ShouldBeEquivalentTo(m_classesExpected);
         }
+
+        [Test]
+        public void ShouldSelectAClass()
+        {
+            m_dataBase.SelectCourse("MAT008");
+            Assert.That(m_dataBase.SelectCourse("MAT008").Name, Is.EqualTo("MAT008"));
+        }
         
         [TearDown]
         public void DisposeDataBase()
