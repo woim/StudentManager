@@ -57,5 +57,10 @@ namespace ClassLibrary
             }
             AddStudent(student);
         }
+
+        public void RemoveStudent(string studentNameToRemove)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
