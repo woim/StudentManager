@@ -7,25 +7,23 @@ Background:
 	Given I have the data base with
 		| Class  | Student        | 
 		| PHY001 | Thibodeau,Jean | 
-
+		| PHY001 | Loiseau,Martin |		
 
 @greenPath
-Scenario: Remove a student to a class
+Scenario: Remove a student from a class
 	When I remove a student to the class 
 		| Class  | Student        | 
-		| PHY001 | Loiseau,Martin | 
-		| PHY001 | Loiseau,Martin |		
+		| PHY001 | Thibodeau,Jean | 
 	Then the data base should have those element
 		| Class  | Student        | 
-		| PHY001 | Thibodeau,Jean | 
-		 
+		| PHY001 | Loiseau,Martin |
 
 
 @redPath
 Scenario: Remove a student to a class in which it does not exist
 	When I remove a student to the class 
-		| Class  | Student        | 
-		| PHY001 | Thibodeau,Jean |
+		| Class  | Student    | 
+		| PHY001 | Loup,Garou |
 	Then I should get an error message "Error student do not exist."
 
 

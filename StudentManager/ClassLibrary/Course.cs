@@ -70,7 +70,7 @@ namespace ClassLibrary
             student.FirstName = names[1];
             if (!m_listStudents.Exists(s => s.Name == student.Name && s.FirstName == student.FirstName))
             {
-                throw new ArgumentException("Error student already exist.");
+                throw new ArgumentException("Error student do not exist.");
             }
             m_listStudents.RemoveAll(s => s.Name == student.Name && s.FirstName == student.FirstName);
         }
