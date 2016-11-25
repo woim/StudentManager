@@ -42,7 +42,7 @@ namespace TestUnit
         [Test]
         public void ShouldRemoveAStudent()
         {
-            string studentName = m_student.Name;
+            string studentName = m_student.Name+ "," + m_student.FirstName;
             m_class.RemoveStudent(studentName);
             Assert.That(m_class.Students, Is.Empty);
         }

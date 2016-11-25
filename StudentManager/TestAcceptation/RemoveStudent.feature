@@ -13,19 +13,20 @@ Background:
 Scenario: Remove a student to a class
 	When I remove a student to the class 
 		| Class  | Student        | 
-		| PHY001 | Loiseau,Martin | 		
+		| PHY001 | Loiseau,Martin | 
+		| PHY001 | Loiseau,Martin |		
 	Then the data base should have those element
 		| Class  | Student        | 
 		| PHY001 | Thibodeau,Jean | 
-		| PHY001 | Loiseau,Martin | 
+		 
 
 
 @redPath
-Scenario: Remove a student to a class in which it already exist
+Scenario: Remove a student to a class in which it does not exist
 	When I remove a student to the class 
 		| Class  | Student        | 
 		| PHY001 | Thibodeau,Jean |
-	Then I should get an error message "Error student already exist."
+	Then I should get an error message "Error student do not exist."
 
 
 @redPath

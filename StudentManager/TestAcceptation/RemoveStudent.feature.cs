@@ -97,6 +97,9 @@ this.FeatureBackground();
             table2.AddRow(new string[] {
                         "PHY001",
                         "Loiseau,Martin"});
+            table2.AddRow(new string[] {
+                        "PHY001",
+                        "Loiseau,Martin"});
 #line 14
  testRunner.When("I remove a student to the class", ((string)(null)), table2, "When ");
 #line hidden
@@ -106,23 +109,20 @@ this.FeatureBackground();
             table3.AddRow(new string[] {
                         "PHY001",
                         "Thibodeau,Jean"});
-            table3.AddRow(new string[] {
-                        "PHY001",
-                        "Loiseau,Martin"});
-#line 17
+#line 18
  testRunner.Then("the data base should have those element", ((string)(null)), table3, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Remove a student to a class in which it already exist")]
+        [NUnit.Framework.DescriptionAttribute("Remove a student to a class in which it does not exist")]
         [NUnit.Framework.CategoryAttribute("redPath")]
-        public virtual void RemoveAStudentToAClassInWhichItAlreadyExist()
+        public virtual void RemoveAStudentToAClassInWhichItDoesNotExist()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a student to a class in which it already exist", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a student to a class in which it does not exist", new string[] {
                         "redPath"});
-#line 24
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -133,10 +133,10 @@ this.FeatureBackground();
             table4.AddRow(new string[] {
                         "PHY001",
                         "Thibodeau,Jean"});
-#line 25
+#line 26
  testRunner.When("I remove a student to the class", ((string)(null)), table4, "When ");
-#line 28
- testRunner.Then("I should get an error message \"Error student already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 29
+ testRunner.Then("I should get an error message \"Error student do not exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -148,7 +148,7 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove a student without specifying the class", new string[] {
                         "redPath"});
-#line 32
+#line 33
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -159,9 +159,9 @@ this.FeatureBackground();
             table5.AddRow(new string[] {
                         "",
                         "Thibodeau,Jean"});
-#line 33
+#line 34
  testRunner.When("I remove a student to the class", ((string)(null)), table5, "When ");
-#line 36
+#line 37
  testRunner.Then("I should get an error message \"Error class not specified.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

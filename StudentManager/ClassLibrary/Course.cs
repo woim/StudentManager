@@ -58,9 +58,21 @@ namespace ClassLibrary
             AddStudent(student);
         }
 
-        public void RemoveStudent(string studentNameToRemove)
+        public void RemoveStudent(string studentName)
         {
-            throw new NotImplementedException();
+            string[] names = studentName.Split(',');
+            if (names.Length != 2)
+            {
+                throw new ArgumentException("Student must have name and at least a first name");
+            }
+            Student student = new Student();
+            student.Name = names[0];
+            student.FirstName = names[1];
+            if (!m_listStudents.Exists(s => s.Name == student.Name && s.FirstName == student.FirstName))
+            {
+                throw new ArgumentException("Error student already exist.");
+            }
+            m_listStudents.RemoveAll(s => s.Name == student.Name && s.FirstName == student.FirstName);
         }
     }
 }
