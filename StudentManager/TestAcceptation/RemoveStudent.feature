@@ -3,32 +3,34 @@
 	As a school administrator
 	I want to be able to remove student from a class
 	
-@mytag
-Scenario Outline: Remove a student from a class - green path
-	Given I have a <Class> with one student <Student1> 
-	When I enter the command "-f testDB -RemoveStudent --Class=<Class> -n Thibodeau -p Gustave"
-	Then the modified database should be 
-
-	Examples: 
-		| Student1          | Class  |
-		| Thibodeau,Gustave | CHI001 |
+Background: 
+	Given I have the data base with
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean | 
 
 
-Scenario Outline: Remove a student to a class in which it does not exist - red path
-	Given I have a <Class> with one student <Student1> 
-	When I enter the command "-f testDB -RemoveStudent --Class=<Class> -n Thibodeau -p Gustave"
-	Then I should get on the screen "Error student do not exist."
+@greenPath
+Scenario: Remove a student to a class
+	When I rermove a student to the class 
+		| Class  | Student        | 
+		| PHY001 | Loiseau,Martin | 		
+	Then the data base should have those element
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean | 
+		| PHY001 | Loiseau,Martin | 
 
-	Examples: 
-		| Student1          | Class  |
-		| Thibodeau,Gustave | CHI001 |
+
+@redPath
+Scenario: Remove a student to a class in which it already exist
+	When I rermove a student to the class 
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean |
+	Then I should get an error message "Error student already exist."
 
 
-Scenario Outline: Remove a student without specifying the class - red path
-	Given I have a <Class> with one student <Student1> 
-	When I enter the command "-f testDB -RemoveStudent -n Thibodeau -p Gustave"
-	Then I should get on the screen "Error class not specified."
-
-	Examples: 
-		| Student1          | Class  |
-		| Thibodeau,Gustave | CHI001 |
+@redPath
+Scenario: Remove a student without specifying the class
+	When I rermove a student to the class 
+		| Class  | Student        | 
+		|        | Thibodeau,Jean |
+	Then I should get an error message "Error class not specified."

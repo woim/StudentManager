@@ -12,6 +12,10 @@ namespace TestAcceptation
         private string m_dataBaseName;
         private string m_cmdRoot;
 
+        internal void RemoveStudent(Table table)
+        {
+            throw new NotImplementedException();
+        }
 
         private List<string> m_listClass;
         private Process m_process;
@@ -31,7 +35,7 @@ namespace TestAcceptation
 
         public StudentManagerApplication()
         {
-            m_processName = @"F:\Personnel\Uqam\MGL7460_Realisation\lab\StudentManager\StudentManager\StudentManager\bin\Debug\StudentManager.exe";
+            m_processName = @"D:\Utilisateurs\fe891094\Documents\StudentManager\StudentManager\StudentManager\bin\Debug\StudentManager.exe";
             m_dataBaseName = @"C:\temp\testableDataBase.txt";
             m_cmdRoot = "-d=" + m_dataBaseName + " ";
             m_listClass = new List<string>();
