@@ -11,7 +11,7 @@ Background:
 
 @greenPath
 Scenario: Remove a student to a class
-	When I rermove a student to the class 
+	When I remove a student to the class 
 		| Class  | Student        | 
 		| PHY001 | Loiseau,Martin | 		
 	Then the data base should have those element
@@ -22,7 +22,7 @@ Scenario: Remove a student to a class
 
 @redPath
 Scenario: Remove a student to a class in which it already exist
-	When I rermove a student to the class 
+	When I remove a student to the class 
 		| Class  | Student        | 
 		| PHY001 | Thibodeau,Jean |
 	Then I should get an error message "Error student already exist."
@@ -30,7 +30,7 @@ Scenario: Remove a student to a class in which it already exist
 
 @redPath
 Scenario: Remove a student without specifying the class
-	When I rermove a student to the class 
+	When I remove a student to the class 
 		| Class  | Student        | 
 		|        | Thibodeau,Jean |
 	Then I should get an error message "Error class not specified."

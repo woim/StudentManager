@@ -11,11 +11,7 @@ namespace TestAcceptation
         private string m_processName;
         private string m_dataBaseName;
         private string m_cmdRoot;
-
-        internal void RemoveStudent(Table table)
-        {
-            throw new NotImplementedException();
-        }
+                
 
         private List<string> m_listClass;
         private Process m_process;
@@ -91,7 +87,14 @@ namespace TestAcceptation
             Process(command);
         }
 
-
+        public void RemoveStudent(Table table)
+        {
+            foreach (var row in table.Rows)
+            {
+                string command = "--class=" + row["Class"] + " --removeStudent=" + row["Student"];
+                Process(command);
+            }
+        }
 
         private string CreateDataFromTableRow(TableRow row)
         {

@@ -6,8 +6,8 @@ namespace TestAcceptation
     [Binding]
     public class RemoveStudentSteps
     {
-        [When(@"I rermove a student to the class")]
-        public void WhenIRermoveAStudentToTheClass(Table table)
+        [When(@"I remove a student to the class")]
+        public void WhenIRemoveAStudentToTheClass(Table table)
         {
             Application.Current.RemoveStudent(table);
         }

@@ -98,7 +98,7 @@ this.FeatureBackground();
                         "PHY001",
                         "Loiseau,Martin"});
 #line 14
- testRunner.When("I rermove a student to the class", ((string)(null)), table2, "When ");
+ testRunner.When("I remove a student to the class", ((string)(null)), table2, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Class",
@@ -134,7 +134,7 @@ this.FeatureBackground();
                         "PHY001",
                         "Thibodeau,Jean"});
 #line 25
- testRunner.When("I rermove a student to the class", ((string)(null)), table4, "When ");
+ testRunner.When("I remove a student to the class", ((string)(null)), table4, "When ");
 #line 28
  testRunner.Then("I should get an error message \"Error student already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -160,7 +160,7 @@ this.FeatureBackground();
                         "",
                         "Thibodeau,Jean"});
 #line 33
- testRunner.When("I rermove a student to the class", ((string)(null)), table5, "When ");
+ testRunner.When("I remove a student to the class", ((string)(null)), table5, "When ");
 #line 36
  testRunner.Then("I should get an error message \"Error class not specified.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
