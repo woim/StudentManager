@@ -11,7 +11,7 @@ Background:
 
 @greenPath
 Scenario: Remove a student from a class
-	When I remove a student to the class 
+	When I remove a student to the class
 		| Class  | Student        | 
 		| PHY001 | Thibodeau,Jean | 
 	Then the data base should have those element
@@ -27,6 +27,12 @@ Scenario: Remove a student to a class in which it does not exist
 	Then I should get an error message "Error student do not exist."
 
 
+@redPath
+Scenario: Add a student to a class in which it already exist
+	When I add a student to the class 
+		| Class  | Student        | 
+		| PHY001 | Thibodeau,Jean |
+	Then I should get an error message "Error student already exist."
 @redPath
 Scenario: Remove a student without specifying the class
 	When I remove a student to the class 

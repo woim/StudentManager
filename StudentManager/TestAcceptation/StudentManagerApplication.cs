@@ -31,7 +31,7 @@ namespace TestAcceptation
 
         public StudentManagerApplication()
         {
-            m_processName = @"D:\Utilisateurs\fe891094\Documents\StudentManager\StudentManager\StudentManager\bin\Debug\StudentManager.exe";
+            m_processName = @"F:\Personnel\Uqam\MGL7460_Realisation\lab\StudentManager\StudentManager\StudentManager\bin\Debug\StudentManager.exe";
             m_dataBaseName = @"C:\temp\testableDataBase.txt";
             m_cmdRoot = "-d=" + m_dataBaseName + " ";
             m_listClass = new List<string>();
