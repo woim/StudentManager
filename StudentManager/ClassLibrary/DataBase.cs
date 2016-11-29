@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace ClassLibrary
@@ -11,8 +8,7 @@ namespace ClassLibrary
         string m_archiveName;
         Accessor m_accessor;
         List<Course> m_courses;
-
-
+        
         public List<Course> Courses
         {
             get

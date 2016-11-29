@@ -1,5 +1,4 @@
-﻿//using System;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace ClassLibrary
                         student.Name = sutdentInfo[0].Split(',')[0];
                         student.FirstName = sutdentInfo[0].Split(',')[1];
 
-                        if (sutdentInfo.Length > 1)//  !String.IsNullOrEmpty(sutdentInfo[1]))
+                        if (sutdentInfo.Length > 1)
                         {
                             List<string> stringNotes = new List<string>(sutdentInfo[1].Split(','));
                             student.Notes = stringNotes.Select(x => double.Parse(x)).ToList();

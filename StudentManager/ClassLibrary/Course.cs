@@ -43,14 +43,7 @@ namespace ClassLibrary
 
         public void AddStudent(string studentName)
         {
-            string[] names = studentName.Split(',');
-            if (names.Length != 2)
-            {
-                throw new ArgumentException("Student must have name and at least a first name");
-            }
-            Student student = new Student();
-            student.Name = names[0];
-            student.FirstName = names[1];
+            Student student = GetStudentFromName(studentName);
             if (m_listStudents.Exists(s => s.Name == student.Name && s.FirstName == student.FirstName))
             {
                 throw new ArgumentException("Error student already exist.");
@@ -60,6 +53,16 @@ namespace ClassLibrary
 
         public void RemoveStudent(string studentName)
         {
+            Student student = GetStudentFromName(studentName);
+            if (!m_listStudents.Exists(s => s.Name == student.Name && s.FirstName == student.FirstName))
+            {
+                throw new ArgumentException("Error student do not exist.");
+            }
+            m_listStudents.RemoveAll(s => s.Name == student.Name && s.FirstName == student.FirstName);
+        }
+
+        private Student GetStudentFromName(string studentName)
+        {
             string[] names = studentName.Split(',');
             if (names.Length != 2)
             {
@@ -68,11 +71,7 @@ namespace ClassLibrary
             Student student = new Student();
             student.Name = names[0];
             student.FirstName = names[1];
-            if (!m_listStudents.Exists(s => s.Name == student.Name && s.FirstName == student.FirstName))
-            {
-                throw new ArgumentException("Error student do not exist.");
-            }
-            m_listStudents.RemoveAll(s => s.Name == student.Name && s.FirstName == student.FirstName);
+            return student;
         }
     }
 }
