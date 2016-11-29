@@ -27,20 +27,19 @@ namespace StudentManager
             // these variables will be set when the command line is parsed
             bool shouldShowHelp = false;
             string dataBaseName = null;
-            string classNameToAdd = null;
-            string classNameToRemove = null;
+ 
+            bool add = false;
+            bool remove = false;
             string className = null;
-            string studentNameToAdd = null;
-            string studentNameToRemove = null;
+            string studentName = null;
 
             // thses are the available options, not that they set the variables
             var options = new OptionSet {
                 { "d|dataBase=", "the database.", v => dataBaseName = v },
-                { "addClass=", "add class to database.", v => classNameToAdd = v },
-                { "removeClass=", "remove class from database.", v => classNameToRemove = v },
                 { "class=", "specify class on which we want to add/remove a student", v => className = v },
-                { "addStudent=", "specify student name [foremat: Name,FirstName1,FirstName2,FirstNameN]", v => studentNameToAdd = v },
-                { "removeStudent=", "specify student name [foremat: Name,FirstName1,FirstName2,FirstNameN]", v => studentNameToRemove = v },
+                { "student=", "specify student name [foremat: Name,FirstName1,FirstName2,FirstNameN]", v => studentName = v },
+                { "a|add", "add an item to the data base either a class or a student" , v => add = v != null},
+                { "r|remove", "remove an item from the data base either a class or a student" , v => remove = v != null},
                 { "h|help", "show help message and exit", v => shouldShowHelp = v != null },
             };
             
@@ -65,37 +64,30 @@ namespace StudentManager
                 ShowHelp(options);
                 return;
             }
-
-            // Create the data base and load it with arhive
+            
+            // Create the data base and load it with archive
             if ( String.IsNullOrEmpty(dataBaseName) )
             {
                 Console.WriteLine("No file for database specified.");
                 return;
             }
 
-            // Load the data base
-            DataBase dataBase = new DataBase(dataBaseName);
-
+            DataBase dataBase = null;
+            try
+            {
+                dataBase = new DataBase(dataBaseName);
+            }
+            catch (Exception error)
+            {
+                Console.Write(error.Message);
+            }    
 
             // Add a class
-            if (!String.IsNullOrEmpty(classNameToAdd))
+            if ( add == true && !String.IsNullOrEmpty(className) && String.IsNullOrEmpty(studentName) )
             {
                 try
                 {
-                    dataBase.AddClass(classNameToAdd);
-                }
-                catch (Exception error)
-                {
-                    Console.Write(error.Message);
-                }
-            }
-            
-            // Remove a class            
-            if (!String.IsNullOrEmpty(classNameToRemove))
-            {
-                try
-                {
-                    dataBase.RemoveClass(classNameToRemove);
+                    dataBase.AddClass(className);
                 }
                 catch (Exception error)
                 {
@@ -103,47 +95,68 @@ namespace StudentManager
                 }
             }
 
+            // Remove a class
+            if ( remove == true && !String.IsNullOrEmpty(className) && String.IsNullOrEmpty(studentName) )
+            {
+                try
+                {
+                    dataBase.RemoveClass(className);
+                }
+                catch (Exception error)
+                {
+                    Console.Write(error.Message);
+                }
+            }
+
+
             // Add a student
-            if (!String.IsNullOrEmpty(studentNameToAdd))
+            if (!String.IsNullOrEmpty(studentName))
             {
                 if (!String.IsNullOrEmpty(className))
-                {                    
-                    try
+                {
+                    if (add == true)
                     {
-                        dataBase.SelectCourse(className).AddStudent(studentNameToAdd);
-                    }
-                    catch (Exception error)
-                    {
-                        Console.Write(error.Message);
+                        try
+                        {
+                            dataBase.SelectCourse(className).AddStudent(studentName);
+                        }
+                        catch (Exception error)
+                        {
+                            Console.Write(error.Message);
+                        }
                     }
                 }
                 else
                 {
                     Console.Write("Error class not specified.");
+                    return;
                 }
             }
 
             // Remove a student
-            if (!String.IsNullOrEmpty(studentNameToRemove))
+            if (!String.IsNullOrEmpty(studentName))
             {
                 if (!String.IsNullOrEmpty(className))
                 {
-                    try
+                    if (remove == true)
                     {
-                        dataBase.SelectCourse(className).RemoveStudent(studentNameToRemove);
-                    }
-                    catch (Exception error)
-                    {
-                        Console.Write(error.Message);
+                        try
+                        {
+                            dataBase.SelectCourse(className).RemoveStudent(studentName);
+                        }
+                        catch (Exception error)
+                        {
+                            Console.Write(error.Message);
+                        }
                     }
                 }
                 else
                 {
                     Console.Write("Error class not specified.");
+                    return;
                 }
             }
-
-
+            
             // Wrtie the database
             dataBase.Save();
         }

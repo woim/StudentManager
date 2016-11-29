@@ -148,7 +148,7 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a student to a class in which it already exist", new string[] {
                         "redPath"});
-#line 31
+#line 30
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
@@ -159,9 +159,9 @@ this.FeatureBackground();
             table5.AddRow(new string[] {
                         "PHY001",
                         "Thibodeau,Jean"});
-#line 32
+#line 31
  testRunner.When("I add a student to the class", ((string)(null)), table5, "When ");
-#line 35
+#line 34
  testRunner.Then("I should get an error message \"Error student already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

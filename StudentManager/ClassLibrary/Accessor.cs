@@ -24,7 +24,7 @@ namespace ClassLibrary
                 string[] fields = line.Split('/');                
                 Course classLoaded = new Course(fields[0]);
 
-                if(!String.IsNullOrEmpty(fields[1]))
+                if(fields.Length > 1 && !String.IsNullOrEmpty(fields[1]))
                 {
                     string[] students = fields[1].Split('|');
                     foreach (var studentEntry in students)

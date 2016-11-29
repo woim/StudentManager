@@ -34,7 +34,7 @@ namespace TestAcceptation
         
         public void AddClass(string className)
         {
-            string command = "--addClass=" + className;
+            string command = "--add" + " --class=" + className;
             Process(command);
         }
 
@@ -42,7 +42,7 @@ namespace TestAcceptation
         {
             foreach (var row in table.Rows)
             {
-                string command = "--class=" + row["Class"] + " --addStudent=" + row["Student"];
+                string command = "--class=" + row["Class"] + " --add" + " --student=" + row["Student"];
                 Process(command);
             }
         }
@@ -86,7 +86,7 @@ namespace TestAcceptation
 
         public void RemoveClass(string className)
         {
-            string command = "--removeClass=" + className;
+            string command = "--remove" + " --class=" + className;
             Process(command);
         }
 
@@ -94,7 +94,7 @@ namespace TestAcceptation
         {
             foreach (var row in table.Rows)
             {
-                string command = "--class=" + row["Class"] + " --removeStudent=" + row["Student"];
+                string command = "--class=" + row["Class"] + " --remove" + " --student=" + row["Student"];
                 Process(command);
             }
         }
@@ -134,7 +134,6 @@ namespace TestAcceptation
             m_process.StartInfo.Arguments = m_cmdRoot + command;
             m_process.Start();
             OutputMessage = m_process.StandardOutput.ReadToEnd();
-            //ReadTestableDataBase();
         }
     }
 
