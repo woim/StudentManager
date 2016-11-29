@@ -108,7 +108,6 @@ namespace StudentManager
                 }
             }
 
-
             // Add a student
             if (!String.IsNullOrEmpty(studentName))
             {
