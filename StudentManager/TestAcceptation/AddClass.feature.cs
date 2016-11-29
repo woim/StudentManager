@@ -90,8 +90,15 @@ this.ScenarioSetup(scenarioInfo);
 this.FeatureBackground();
 #line 14
  testRunner.When("I add the class \"MAT002\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Class"});
+            table2.AddRow(new string[] {
+                        "PHY001"});
+            table2.AddRow(new string[] {
+                        "MAT002"});
 #line 15
- testRunner.Then("the database should have Two classes \"PHY001\" and \"MAT002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the data base should have those element", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -111,13 +118,13 @@ this.FeatureBackground();
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class with a bad name format", @__tags);
-#line 19
+#line 22
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 20
+#line 23
  testRunner.When(string.Format("I add the class \"{0}\" in the data base", @class), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
+#line 24
  testRunner.Then("I should get an error message \"Error class name format incorrect.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -130,13 +137,13 @@ this.FeatureBackground();
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add a class that already exist", new string[] {
                         "redPath"});
-#line 31
+#line 34
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
-#line 32
+#line 35
  testRunner.When("I add the class \"PHY001\" in the data base", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
+#line 36
  testRunner.Then("I should get an error message \"Error class already exist.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

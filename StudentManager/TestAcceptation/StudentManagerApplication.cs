@@ -11,22 +11,11 @@ namespace TestAcceptation
         private string m_processName;
         private string m_dataBaseName;
         private string m_cmdRoot;
-                
-
         private List<string> m_listClass;
         private Process m_process;
 
 
         public string OutputMessage { get; private set; }
-
-        public List<string> ListClass
-        {
-            get
-            {
-                return m_listClass;
-            }
-        }
-
 
 
         public StudentManagerApplication()
@@ -63,9 +52,24 @@ namespace TestAcceptation
         {
             // Create testable data base
             List<string> data = new List<string>();
+            string className = null;
             foreach (var row in table.Rows)
-            {
-                data.Add(CreateDataFromTableRow(row));
+            {                
+                if (className != row["Class"].ToString())
+                {
+                    string dataString = row["Class"].ToString() + "/";
+                    data.Add(dataString);
+                    className = row["Class"].ToString();
+                }
+                else
+                {
+                    data[data.Count - 1] += "|";
+                }
+
+                if (row.Keys.Contains("Student"))
+                {
+                    data[data.Count - 1] += row["Student"].ToString();
+                }              
             }
             // Write the data in the testable data base
             File.WriteAllLines(m_dataBaseName, data);
@@ -96,26 +100,16 @@ namespace TestAcceptation
             }
         }
 
-        private string CreateDataFromTableRow(TableRow row)
-        {
-            string data = row["Class"].ToString() + "/";
-            if (row.Keys.Contains("Student"))
-            {
-                data += row["Student"].ToString();
-            }
-            return data;
-        }
-
         private List<Entry> FormatLineToEntry(string entryLine)
         {
             List<Entry> entries = new List<Entry>();
             
-            string className = entryLine.Split('/')[0];
-            string classInfo = entryLine.Split('/')[1];
-
-            if (!String.IsNullOrEmpty(classInfo))
+            string[] entryField = entryLine.Split('/');
+            string className = entryField[0];
+            
+            if (entryField.Length > 1)
             {
-                string[] listStudent = classInfo.Split('|');
+                string[] listStudent = entryField[1].Split('|');
                 foreach (var studentInfo in listStudent)
                 {
                     string[] studentField = studentInfo.Split('=');
@@ -135,27 +129,14 @@ namespace TestAcceptation
             }
             return entries;
         }
-
-        private string GetClass(string entry)
-        {
-            return entry.Split('/')[0];
-        }
         
         private void Process(string command)
         {
             m_process.StartInfo.Arguments = m_cmdRoot + command;
             m_process.Start();
             OutputMessage = m_process.StandardOutput.ReadToEnd();
-            ReadTestableDataBase();
+            //ReadTestableDataBase();
         }
-
-        private void ReadTestableDataBase()
-        {
-            foreach (var entry in File.ReadAllLines(m_dataBaseName))
-            {
-                m_listClass.Add(GetClass(entry));
-            }
-        }        
     }
 
     public static class Application

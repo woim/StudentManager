@@ -12,7 +12,10 @@ Background:
 @greenPath
 Scenario: Add a class  
 	When I add the class "MAT002" in the data base
-	Then the database should have Two classes "PHY001" and "MAT002"
+	Then the data base should have those element
+		| Class  | 
+		| PHY001 | 
+		| MAT002 | 
 
 
 @redPath

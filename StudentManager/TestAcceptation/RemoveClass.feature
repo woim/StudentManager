@@ -13,7 +13,9 @@ Background:
 @greenPath
 Scenario: Remove a class  
 	When I remove the class "PHY001" in the data base
-	Then the modified database should have classes "CHI002"
+	Then the data base should have those element
+		| Class  | 
+		| CHI002 | 
 
 
 @redPath

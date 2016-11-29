@@ -1,6 +1,4 @@
-﻿using System;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
+﻿using TechTalk.SpecFlow;
 
 namespace TestAcceptation
 {
@@ -12,12 +10,5 @@ namespace TestAcceptation
         {
             Application.Current.AddStudent(table);
         }
-        
-        [Then(@"the data base should have those element")]
-        public void ThenTheDataBaseShouldHaveThoseElement(Table table)
-        {
-            var dataBaseEntries = Application.Current.GetDataBase();
-            table.CompareToSet<Entry>(dataBaseEntries);
-        }
-    }
+     }
 }

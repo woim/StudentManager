@@ -54,7 +54,11 @@ namespace ClassLibrary
             List<string> entries = new List<string>();
             foreach (var course in Courses)
             {
-                string entry = course.Name + "/";
+                string entry = course.Name;
+                if (course.Students.Count != 0)
+                {
+                    entry += "/";
+                }                
                 foreach (var student in course.Students)
                 {
                     entry += student.Name + "," + student.FirstName;

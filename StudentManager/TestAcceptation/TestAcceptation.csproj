@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="RemoveStudentSteps.cs" />
     <Compile Include="StudentManagerApplication.cs" />
+    <Compile Include="VerifyDataBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AddStudent.feature">
